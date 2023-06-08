@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+# include "./GNL/get_next_line.h"
 # include "./GNL/get_next_line_bonus.h"
 # include "./Libft/libft.h"
 # include "./Printf/ft_printf.h"
@@ -28,3 +29,8 @@ typedef struct 	s_point
     int 		x;				// x : Width  | x-axis
     int 		y;				// y : Height | y-axis
 } 				t_point;
+
+int	check_size(char	**map);
+int	chek_wall(char **map);
+void	check_way(char **map, t_point size, t_point cur, int c);
+int	check_map(char **map);

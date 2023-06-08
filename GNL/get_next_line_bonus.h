@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                              :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 14:18:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:17:04 by sanaggar         ###   ########.fr       */
+/*   Created: 2023/05/26 17:55:24 by sanaggar          #+#    #+#             */
+/*   Updated: 2023/06/08 17:29:37 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./GNL/get_next_line_bonus.h"
-# include "./Libft/libft.h"
-# include "./Printf/ft_printf.h"
-# include <stdio.h>
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <fcntl.h>
-# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
 
-typedef struct	s_pos
-{
-	int		x;
-	int		y;
-}				t_pos;
+char	*get_next_line(int fd);
+char	*ft_strchr_gnl(char	*s, int c);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+size_t	ft_strlen(const char	*s);
+char	*read_and_stash(int fd, char *stash);
 
-typedef struct 	s_point 
-{
-    int 		x;				// x : Width  | x-axis
-    int 		y;				// y : Height | y-axis
-} 				t_point;
+#endif

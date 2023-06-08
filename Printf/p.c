@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                              :+:      :+:    :+:   */
+/*   p.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 14:18:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:17:04 by sanaggar         ###   ########.fr       */
+/*   Created: 2023/05/03 16:09:33 by sanaggar          #+#    #+#             */
+/*   Updated: 2023/05/03 16:09:36 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./GNL/get_next_line_bonus.h"
-# include "./Libft/libft.h"
-# include "./Printf/ft_printf.h"
-# include <stdio.h>
-# include <fcntl.h>
-# include <string.h>
+#include "ft_printf.h"
 
-typedef struct	s_pos
+void	ft_p(unsigned long long d, int *print)
 {
-	int		x;
-	int		y;
-}				t_pos;
-
-typedef struct 	s_point 
-{
-    int 		x;				// x : Width  | x-axis
-    int 		y;				// y : Height | y-axis
-} 				t_point;
+	ft_putstr_fd("0x", 1);
+	(*print) += 2;
+	ft_putnbr_base("0123456789abcdef", d, print);
+}

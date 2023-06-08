@@ -6,18 +6,20 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/07 17:27:58 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/08 19:41:51 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#include "so_long.h"
 
 int	check_size(char	**map)
 {
-	size_t	len_line
+	int		i;
+	size_t	len_line;
 	t_pos	pos;
 	
 	i = 0;
+	len_line = 0;
 	pos.x = 0;
 	pos.y = 0;
 	
@@ -66,23 +68,24 @@ int	chek_wall(char **map)
 	return (1);
 }
 
-int	check_way(char **map, t_point size, t_point cur, int c)
+void	check_way(char **map, t_point size, t_point cur)
 {
 	int	nb_collectible;
 	int	nb_exit;
 
-	nb_collectible = 0;
-	nb_exit = 0;
+	//nb_collectible = 0;
+	//nb_exit = 0;
 	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x
-	|| tab[cur.y][cur.x] == 1)
+	|| map[cur.y][cur.x] == 1)
 		return ;
 		
-	if (tab[cur.y][cur.x] = 'C')
+	if (map[cur.y][cur.x] == 'C')
 		nb_collectible++;
-	if (tab[cur.y][cur.x] = 'E')
+	if (map[cur.y][cur.x] == 'E')
 		nb_exit++;
-	if (nb_collectible != c || nb_exit < 1)
-		return (0);
+	if (nb_exit < 1)
+		return ;
+	// checker a l'exterieur si nb collectible correct
 	
 //if (tab[cur.y][cur.x] != 1)
 	check_way(map, size, (t_point){cur.x - 1, cur.y}, c);
@@ -103,9 +106,10 @@ int	check_map(char **map)
 	{
 		while (map[pos.x])
 		{
-			if (map[pos.y][pos.x] != '1' || map[pos.y][pos.x] != 'P'
-				|| map[pos.y][pos.x] != 'E' || map[pos.y][pos.x] != 'C')
-					return (0);
+			if (map[pos.y][pos.x] != '1' && map[pos.y][pos.x] != 'P'
+				&& map[pos.y][pos.x] != 'E' && map[pos.y][pos.x] != 'C' && 
+					map[pos.y][pos.x] != '0')
+						return (0);
 					
 			if (map[pos.y][pos.x] == 'E')
 				nb_exit++;

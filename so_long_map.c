@@ -1,30 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                              :+:      :+:    :+:   */
+/*   so_long_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 14:18:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:17:04 by sanaggar         ###   ########.fr       */
+/*   Created: 2023/06/07 20:11:04 by sanaggar          #+#    #+#             */
+/*   Updated: 2023/06/08 17:52:24 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./GNL/get_next_line_bonus.h"
-# include "./Libft/libft.h"
-# include "./Printf/ft_printf.h"
-# include <stdio.h>
-# include <fcntl.h>
-# include <string.h>
+#include "so_long.h"
 
-typedef struct	s_pos
-{
-	int		x;
-	int		y;
-}				t_pos;
-
-typedef struct 	s_point 
-{
-    int 		x;				// x : Width  | x-axis
-    int 		y;				// y : Height | y-axis
-} 				t_point;

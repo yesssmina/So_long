@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 20:43:42 by sam               #+#    #+#             */
-/*   Updated: 2023/06/08 16:12:52 by sanaggar         ###   ########.fr       */
+/*   Created: 2023/05/03 16:10:14 by sanaggar          #+#    #+#             */
+/*   Updated: 2023/05/03 16:11:51 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_s(char *s, int	*print)
 {
-	char	*str;
-	int		i;
-	int		j;
+	int	i;
 
-	i = 0;
-	j = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
-	if (!str)
-		return (NULL);
-	while (s1[i])
+	if (!s)
 	{
-		str[i] = (char)s1[i];
+		write(1, "(null)", 6);
+		*print += 6;
+		return ;
+	}
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		(*print)++;
 		i++;
 	}
-	while (s2[j])
-		str[i++] = (char)s2[j++];
-	str[i] = '\0';
-	return (str);
 }
-/*
-int	main(void)
-{
-	printf("%s", ft_strjoin("Coucou", "Salut"));
-}*/

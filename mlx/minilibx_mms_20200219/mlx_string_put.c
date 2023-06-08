@@ -1,5 +1,5 @@
 
-#include "mlx.h"
+#include "so_long.h"
 
 #include "font.c"
 

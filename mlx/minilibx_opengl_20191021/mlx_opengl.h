@@ -2,7 +2,7 @@
 **
 ** mlx_opengl.h 
 **
-** public include, use it after mlx.h
+** public include, use it after so_long.h
 ** designed only for minilibx_macos
 **
 */

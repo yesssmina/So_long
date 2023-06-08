@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                              :+:      :+:    :+:   */
+/*   u.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 14:18:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:17:04 by sanaggar         ###   ########.fr       */
+/*   Created: 2023/05/03 16:10:30 by sanaggar          #+#    #+#             */
+/*   Updated: 2023/05/03 16:10:33 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./GNL/get_next_line_bonus.h"
-# include "./Libft/libft.h"
-# include "./Printf/ft_printf.h"
-# include <stdio.h>
-# include <fcntl.h>
-# include <string.h>
+#include "ft_printf.h"
 
-typedef struct	s_pos
+void	ft_putnbr(unsigned int nb, int *print)
 {
-	int		x;
-	int		y;
-}				t_pos;
+	if (nb > 9)
+	{
+		ft_putnbr(nb / 10, print);
+		ft_putnbr(nb % 10, print);
+	}
+	if (nb < 10)
+	{
+		ft_putchar_fd(nb + '0', 1);
+		(*print)++;
+	}
+}
 
-typedef struct 	s_point 
+void	ft_u(unsigned int d, int	*print)
 {
-    int 		x;				// x : Width  | x-axis
-    int 		y;				// y : Height | y-axis
-} 				t_point;
+	if (d < 0)
+		return ;
+	ft_putnbr(d, print);
+}
