@@ -1,0 +1,8 @@
+Libft
+GNL
+Printf
+
+*.a
+*.o
+*a.out*
+.DS_Store
