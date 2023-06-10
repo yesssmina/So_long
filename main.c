@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/10 22:13:16 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:30:55 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main()
 	}
 	size.x = ft_strlen(map[0]);
 	size.y = max_ligne;
-	cur.x = 1;
+	cur.x = 2;
     cur.y = 1;
 	puts("\n");
 	data.nb_collectible = 0;
@@ -48,9 +48,10 @@ int	main()
 	data.nb_exit = 0;
 	
 	check_way(map, size, cur, &data);
-	printf("%d", data.nb_collectible);
-	printf("%d", data.nb_player);
-	printf("%d", data.nb_exit);
+	printf("**collectible%d**\n", data.nb_collectible);
+	printf("**%dplayer**\n", data.nb_player);
+	printf("**%dexit**\n", data.nb_exit);
+
 	if (data.nb_collectible < 1 || data.nb_exit < 1 || data.nb_player < 1)
 	{	
 		puts("non");

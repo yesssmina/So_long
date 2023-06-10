@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/10 22:23:08 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:28:24 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,28 +71,23 @@ int	check_wall(char **map) //ok
 
 void	check_way(char **map, t_point size, t_point cur, t_data *data)
 {
-	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x 
-		|| map[cur.y][cur.x] == 1)
+	if (cur.y < 0 || cur.y > size.y || cur.x < 0 || cur.x > size.x 
+		|| map[cur.y][cur.x] == '1')
 		return ;
 	
 	if (map[cur.y][cur.x] == 'P')
-		data->nb_collectible++;
+		data->nb_player++;
 	if (map[cur.y][cur.x] == 'C')
 		data->nb_collectible++;
 	if (map[cur.y][cur.x] == 'E')
 		data->nb_exit++;
-	if (data->nb_exit < 1 || data->nb_collectible < 1)
-		return ;
-	// checker a l'exterieur si nb collectible correct
-	// garder void et checker la les donnees de ma structure pour savoir si ok
+	printf("%d%d\n", cur.y, cur.x);
 	
-	if (map[cur.y][cur.x] != 1)
-	{	
-		check_way(map, size, (t_point){cur.x - 1, cur.y}, data);
-		check_way(map, size, (t_point){cur.x + 1, cur.y}, data);
-		check_way(map, size, (t_point){cur.x, cur.y - 1}, data);
-		check_way(map, size, (t_point){cur.x, cur.y + 1}, data);
-	}
+	map[cur.y][cur.x] = '1';
+	check_way(map, size, (t_point){cur.x - 1, cur.y}, data);
+	check_way(map, size, (t_point){cur.x + 1, cur.y}, data);
+	check_way(map, size, (t_point){cur.x, cur.y - 1}, data);
+	check_way(map, size, (t_point){cur.x, cur.y + 1}, data);
 }
 
 int	check_map(char **map)
