@@ -28,16 +28,17 @@ typedef struct	s_data
 {
 	int	nb_collectible;
 	int	nb_exit;
+	int	nb_player;
 }				t_data;
 
 
 typedef struct 	s_point 
 {
     int 		x;				// x : Width  | x-axis
-    int 		y;				// y : Height | y-axis
+    int 		y;			// y : Height | y-axis
 } 				t_point;
 
 int	check_size(char	**map);
-int	chek_wall(char **map);
+int	check_wall(char **map);
 void	check_way(char **map, t_point size, t_point cur, t_data *data);
 int	check_map(char **map);

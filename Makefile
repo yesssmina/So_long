@@ -6,11 +6,11 @@
 #    By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 13:30:26 by sanaggar          #+#    #+#              #
-#    Updated: 2023/06/08 19:32:35 by sanaggar         ###   ########.fr        #
+#    Updated: 2023/06/10 16:38:23 by sanaggar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long.a
+NAME = so_long
 
 CC = gcc
 
@@ -33,8 +33,6 @@ $(NAME): $(OBJ)
 	cp ./Libft/libft.a $(NAME)
 	make -C ./Printf/
 	cp ./Printf/libftprintf.a $(NAME)
-	#make -C ./GNL/
-	#cp ./GNL/gnl.a $(NAME)
 	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
@@ -47,6 +45,5 @@ fclean: clean
 	rm -f $(NAME)
 	rm -f ./Printf/libftprintf.a
 	rm -f ./Libft/libft.a
-	#rm -f ./GNL/gnl.a
 
 re:		fclean all

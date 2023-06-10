@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 19:32:53 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/10 22:13:16 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,52 @@
 int	main()
 {
 	char	**map;
-	//char	*line;
 	int		fd;
 	int		i;
+	int		max_ligne = 10;
+	t_data	data;
+	t_point size;
+	t_point	cur;
 	
 	i = 0;
 	fd = open("./maps/small_map.ber", O_RDONLY);
-	map = malloc(sizeof(char *) * 10);
+	map = malloc(sizeof(char *) * (max_ligne + 1));
 	if (!map)
 		return (0);
-	map[i] = get_next_line(fd);
-	i++;
-	while (map[i])
+	while (i < max_ligne)
 	{
 		map[i] = get_next_line(fd);
+		if (!map[i])
+			break;
+		if (map[i][ft_strlen(map[i]) - 1] == '\n')
+			map[i][ft_strlen(map[i]) - 1] = '\0';
+		printf("%s", map[i]);
 		i++;
+	}
+	size.x = ft_strlen(map[0]);
+	size.y = max_ligne;
+	cur.x = 1;
+    cur.y = 1;
+	puts("\n");
+	data.nb_collectible = 0;
+	data.nb_player = 0;
+	data.nb_exit = 0;
+	
+	check_way(map, size, cur, &data);
+	printf("%d", data.nb_collectible);
+	printf("%d", data.nb_player);
+	printf("%d", data.nb_exit);
+	if (data.nb_collectible < 1 || data.nb_exit < 1 || data.nb_player < 1)
+	{	
+		puts("non");
+		return (0);
+	}
+	else
+	{	
+		puts("oui");
+		return (1);
 	}
 	close(fd);
 	
-	if (check_size(map) == 1)
-		return (1);
 	return (0);
 }
