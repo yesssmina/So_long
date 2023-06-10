@@ -41,4 +41,4 @@ typedef struct 	s_point
 int	check_size(char	**map);
 int	check_wall(char **map);
 void	check_way(char **map, t_point size, t_point cur, t_data *data);
-int	check_map(char **map);
+void	check_map(char **map, int nb_collectible_needed);

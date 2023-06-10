@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/10 23:30:55 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/11 01:18:34 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,9 @@ int	main()
 	data.nb_player = 0;
 	data.nb_exit = 0;
 	
-	check_way(map, size, cur, &data);
-	printf("**collectible%d**\n", data.nb_collectible);
-	printf("**%dplayer**\n", data.nb_player);
-	printf("**%dexit**\n", data.nb_exit);
-
-	if (data.nb_collectible < 1 || data.nb_exit < 1 || data.nb_player < 1)
+	check_map(map, 5);
+	printf("collectible%d\nplayer%d\nexit%d\n", data.nb_collectible, data.nb_player, data.nb_exit);
+	if (data.nb_collectible == 0 || data.nb_exit != 1 || data.nb_player != 1)
 	{	
 		puts("non");
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/10 23:28:24 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/11 01:45:21 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,36 +90,38 @@ void	check_way(char **map, t_point size, t_point cur, t_data *data)
 	check_way(map, size, (t_point){cur.x, cur.y + 1}, data);
 }
 
-int	check_map(char **map)
+//faire pareil que check map
+void	check_map(char **map, int nb_collectible_needed)
 {
-	int	nb_exit;
-	int	nb_player;
+	t_data	data;
 	t_pos	pos;
 
-	nb_exit = 0;
-	nb_player = 0;
+	data.nb_exit = 0;
+	data.nb_player = 0;
 	while (map[pos.y])
 	{
-		while (map[pos.x])
+		puts("la");
+		while (map[pos.y][pos.x])
 		{
 			if (map[pos.y][pos.x] != '1' && map[pos.y][pos.x] != 'P'
 				&& map[pos.y][pos.x] != 'E' && map[pos.y][pos.x] != 'C' && 
 					map[pos.y][pos.x] != '0')
-						return (0);
-					
+						return ;
+			
+			if (map[pos.y][pos.x] == 'C')
+				data.nb_collectible++;
+			
 			if (map[pos.y][pos.x] == 'E')
-				nb_exit++;
+				data.nb_exit++;
 
 			if (map[pos.y][pos.x] == 'P')
-				nb_player++;
+				data.nb_player++;
 			
 			pos.x++;
 		}
 		pos.x = 0;
 		pos.y++;
 	}
-	
-	if (nb_exit != 1 || nb_player != 1)
-		return (0);
-	return (1);
+	if (data.nb_collectible != nb_collectible_needed)
+		data.nb_collectible = 0;
 }
