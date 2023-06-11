@@ -6,7 +6,7 @@
 #    By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/03 13:30:26 by sanaggar          #+#    #+#              #
-#    Updated: 2023/06/10 16:38:23 by sanaggar         ###   ########.fr        #
+#    Updated: 2023/06/11 22:20:17 by sanaggar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -v
 
 SRC =	so_long_parsing.c \
+		so_long_utils.c \
 		main.c \
 		./GNL/get_next_line.c \
 		./GNL/get_next_line_utils.c \

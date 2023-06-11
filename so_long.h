@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <string.h>
+# include <stdlib.h>
 
 typedef struct	s_pos
 {
@@ -29,16 +30,27 @@ typedef struct	s_data
 	int	nb_collectible;
 	int	nb_exit;
 	int	nb_player;
+	int nb_collectible_needed;
 }				t_data;
 
+//typedef struct	s_map
+//{
+//	int	nb_collectible;
+//	int	nb_exit;
+//	int	nb_player;
+//}				t_map;
 
 typedef struct 	s_point 
 {
-    int 		x;				// x : Width  | x-axis
-    int 		y;			// y : Height | y-axis
+    int 		x;
+    int 		y;
 } 				t_point;
 
 int	check_size(char	**map);
 int	check_wall(char **map);
 void	check_way(char **map, t_point size, t_point cur, t_data *data);
-void	check_map(char **map, int nb_collectible_needed);
+int	check_map(char **map, int nb_collectible_needed, t_data *data);
+int	check_check_way(char **map, t_point	size, t_point cur, t_data *data);
+int	check_check_map(char **map, t_data *data, int nb_collectible_needed);
+int	check_parsing(char **map, t_data *data, t_point size, t_point cur);
+char **allocation_map(int nb_ligne, int nb_colonne);

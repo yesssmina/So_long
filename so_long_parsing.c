@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/11 01:45:21 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/11 23:19:46 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,28 @@ int	check_size(char	**map) //ok
 
 int	check_wall(char **map) //ok
 {
+	puts("size");
 	t_pos	pos;
 	
 	pos.x = 0;
 	pos.y = 0;
-	while (map[0])
+	while (map[0] && map[0][pos.x] != '\0')
 	{
-		if (map[0][pos.x] == '\0')
-			break;
 		if (map[0][pos.x] != '1')
 			return (0);
 		pos.x++;
 	}
 	while (map[pos.y])
 	{
+		pos.x = 0;
 		if (map[pos.y][0] != '1' || map[pos.y][pos.x - 1] != '1')
 			return (0);
 		pos.y++;
 	}
-	printf("%d", pos.x);
+	//printf("%d", pos.x);
 	pos.x = 0;
 	while (map[pos.y - 1])
 	{
-		puts("ici");
 		if (map[0][pos.x] == '\0')
 			break;
 		if (map[pos.y - 1][pos.x] != '1')
@@ -71,7 +70,8 @@ int	check_wall(char **map) //ok
 
 void	check_way(char **map, t_point size, t_point cur, t_data *data)
 {
-	if (cur.y < 0 || cur.y > size.y || cur.x < 0 || cur.x > size.x 
+	
+	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x 
 		|| map[cur.y][cur.x] == '1')
 		return ;
 	
@@ -81,7 +81,7 @@ void	check_way(char **map, t_point size, t_point cur, t_data *data)
 		data->nb_collectible++;
 	if (map[cur.y][cur.x] == 'E')
 		data->nb_exit++;
-	printf("%d%d\n", cur.y, cur.x);
+	//printf("%d%d\n", cur.y, cur.x);
 	
 	map[cur.y][cur.x] = '1';
 	check_way(map, size, (t_point){cur.x - 1, cur.y}, data);
@@ -90,38 +90,37 @@ void	check_way(char **map, t_point size, t_point cur, t_data *data)
 	check_way(map, size, (t_point){cur.x, cur.y + 1}, data);
 }
 
-//faire pareil que check map
-void	check_map(char **map, int nb_collectible_needed)
+int	check_map(char **map, int nb_collectible_needed, t_data *data)
 {
-	t_data	data;
 	t_pos	pos;
 
-	data.nb_exit = 0;
-	data.nb_player = 0;
+	pos.y = 0;
+	pos.x = 0;
 	while (map[pos.y])
 	{
-		puts("la");
 		while (map[pos.y][pos.x])
 		{
 			if (map[pos.y][pos.x] != '1' && map[pos.y][pos.x] != 'P'
 				&& map[pos.y][pos.x] != 'E' && map[pos.y][pos.x] != 'C' && 
 					map[pos.y][pos.x] != '0')
-						return ;
+						return (0);
 			
 			if (map[pos.y][pos.x] == 'C')
-				data.nb_collectible++;
+				data->nb_collectible++;
 			
 			if (map[pos.y][pos.x] == 'E')
-				data.nb_exit++;
+				data->nb_exit++;
 
 			if (map[pos.y][pos.x] == 'P')
-				data.nb_player++;
+				data->nb_player++;
 			
 			pos.x++;
 		}
 		pos.x = 0;
 		pos.y++;
 	}
-	if (data.nb_collectible != nb_collectible_needed)
-		data.nb_collectible = 0;
+	printf("*%d\n*", data->nb_collectible);
+	if (data->nb_collectible != nb_collectible_needed)
+		data->nb_collectible = 0;
+	return (1);
 }
