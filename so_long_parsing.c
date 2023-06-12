@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/11 23:19:46 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:19:23 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	check_way(char **map, t_point size, t_point cur, t_data *data)
 		data->nb_collectible++;
 	if (map[cur.y][cur.x] == 'E')
 		data->nb_exit++;
-	//printf("%d%d\n", cur.y, cur.x);
+	printf("y:%dx:%d\n", cur.y, cur.x);
 	
 	map[cur.y][cur.x] = '1';
 	check_way(map, size, (t_point){cur.x - 1, cur.y}, data);

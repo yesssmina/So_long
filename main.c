@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/11 23:15:50 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:44:09 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,12 @@ int	check_parsing(char **map, t_data *data, t_point size, t_point cur)
 	way = check_check_way(map, size, cur, data);
 	maap = check_check_map(map, data, data->nb_collectible_needed);
 	data->nb_collectible = 0;
-	if (!maap)
+	if (!csize)
+	{	
+		puts("la");
+		return (0);
+	}
+	if (!wall)
 	{	
 		puts("la");
 		return (0);
@@ -72,12 +77,7 @@ int	check_parsing(char **map, t_data *data, t_point size, t_point cur)
 		puts("la");
 		return (0);
 	}
-	if (!csize)
-	{	
-		puts("la");
-		return (0);
-	}
-	if (!wall)
+	if (!maap)
 	{	
 		puts("la");
 		return (0);

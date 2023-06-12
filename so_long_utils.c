@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/11 22:37:06 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:11:35 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ char **allocation_map(int nb_ligne, int nb_colonne)
             free(map);
             return (NULL);
         }
+		printf("i:%dlignes:%d\n", i, nb_ligne);
         i++;
     }
+	//map[i] = malloc(sizeof(char));
+	//map[i] = NULL;
     return (map);
 }
