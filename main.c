@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/12 20:44:09 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/12 22:54:55 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,29 @@ int	check_check_map(char **map, t_data *dat, int nb_collectible_needed)
 //check les fonctions de mon parsing
 int	check_parsing(char **map, t_data *data, t_point size, t_point cur)
 {
-	int	wall;
-	int csize;
-	int	way;
-	int	maap;
+	if (!check_size(map))
+	{	
+		puts("la");
+		return (0);
+	}
+	if (!check_wall(map))
+	{	
+		puts("la");
+		return (0);
+	}
 
-	csize = check_size(map);
-	wall = check_wall(map);
-	way = check_check_way(map, size, cur, data);
-	maap = check_check_map(map, data, data->nb_collectible_needed);
+	if (!check_check_way(map, size, cur, data))
+	{	
+		puts("la");
+		return (0);
+	}
+
+	if (!check_check_map(map, data, data->nb_collectible_needed))
+	{	
+		puts("la");
+		return (0);
+	}
 	data->nb_collectible = 0;
-	if (!csize)
-	{	
-		puts("la");
-		return (0);
-	}
-	if (!wall)
-	{	
-		puts("la");
-		return (0);
-	}
-	if (!way)
-	{	
-		puts("la");
-		return (0);
-	}
-	if (!maap)
-	{	
-		puts("la");
-		return (0);
-	}
 	return (1);
 }
 
@@ -127,6 +120,7 @@ int	main()
 		return (1);
 	}
 	close(fd);
+	puts("non");
 	return (0);
 }
 
