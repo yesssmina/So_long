@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/14 01:34:36 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 01:37:01 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ int	main()
 	puts("non final");
 	return (0);
 }
+
+// A faire
+// optimisation main ++
+// gerer ft_error
+
+
 
 //char	error_mess(char	*message)
 //{
