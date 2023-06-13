@@ -9,23 +9,23 @@
 int	mlx_int_str_str(char *str,char *find,int len)
 {
   int	len_f;
-  int	pos;
+  int	point;
   char	*s;
   char	*f;
 
   len_f = strlen(find);
   if (len_f>len)
     return (-1);
-  pos = 0;
+  point = 0;
   while (*(str+len_f-1))
     {
       s = str;
       f = find;
       while (*(f++) == *(s++))
         if (!*f)
-          return (pos);
+          return (point);
       str ++;
-      pos ++;
+      point ++;
     }
   return (-1);
 }
@@ -35,7 +35,7 @@ int	mlx_int_str_str(char *str,char *find,int len)
 int	mlx_int_str_str_cote(char *str,char *find,int len)
 {
   int	len_f;
-  int	pos;
+  int	point;
   char	*s;
   char	*f;
   int	cote;
@@ -44,7 +44,7 @@ int	mlx_int_str_str_cote(char *str,char *find,int len)
   if (len_f>len)
     return (-1);
   cote = 0;
-  pos = 0;
+  point = 0;
   while (*(str+len_f-1))
     {
       if (*str=='"')
@@ -55,10 +55,10 @@ int	mlx_int_str_str_cote(char *str,char *find,int len)
 	  f = find;
 	  while (*(f++) == *(s++))
 	    if (!*f)
-	      return (pos);
+	      return (point);
 	}
       str ++;
-      pos ++;
+      point ++;
     }
   return (-1);
 }
@@ -67,40 +67,40 @@ int	mlx_int_str_str_cote(char *str,char *find,int len)
 char	**mlx_int_str_to_wordtab(char *str)
 {
   char	**tab;
-  int	pos;
+  int	point;
   int	nb_word;
   int	len;
 
   len = strlen(str);
   nb_word = 0;
-  pos = 0;
-  while (pos<len)
+  point = 0;
+  while (point<len)
   {
-    while (*(str+pos)==' ' || *(str+pos)=='\t')
-      pos ++;
-    if (*(str+pos))
+    while (*(str+point)==' ' || *(str+point)=='\t')
+      point ++;
+    if (*(str+point))
       nb_word ++;
-    while (*(str+pos) && *(str+pos)!=' ' && *(str+pos)!='\t')
-      pos ++;
+    while (*(str+point) && *(str+point)!=' ' && *(str+point)!='\t')
+      point ++;
   }
   if (!(tab = malloc((1+nb_word)*sizeof(*tab))))
     return ((char **)0);
   nb_word = 0;
-  pos = 0;
-  while (pos<len)
+  point = 0;
+  while (point<len)
     {
-      while (*(str+pos)==' ' || *(str+pos)=='\t')
+      while (*(str+point)==' ' || *(str+point)=='\t')
 	{
-	  *(str+pos) = 0;
-	  pos ++;
+	  *(str+point) = 0;
+	  point ++;
 	}
-      if (*(str+pos))
+      if (*(str+point))
 	{
-	  tab[nb_word] = str+pos;
+	  tab[nb_word] = str+point;
 	  nb_word ++;
 	}
-      while (*(str+pos) && *(str+pos)!=' ' && *(str+pos)!='\t')
-	pos ++;
+      while (*(str+point) && *(str+point)!=' ' && *(str+point)!='\t')
+	point ++;
     }
   tab[nb_word] = 0;
   return (tab);

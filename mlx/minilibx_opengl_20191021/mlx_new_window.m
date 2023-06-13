@@ -178,7 +178,7 @@ int get_mouse_button(NSEventType eventtype)
 
   thepoint = [theEvent locationInWindow];
   button = get_mouse_button([theEvent type]);
-  //  printf("Mouse pressed bt %d  pos: %f, %f\n", button, thepoint.x, thepoint.y);
+  //  printf("Mouse pressed bt %d  point: %f, %f\n", button, thepoint.x, thepoint.y);
   if (event_funct[4] != NULL)
     event_funct[4](button, (int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[4]);
 }
@@ -190,7 +190,7 @@ int get_mouse_button(NSEventType eventtype)
 
   thepoint = [theEvent locationInWindow];
   button = get_mouse_button([theEvent type]);
-  //  printf("Mouse pressed bt %d  pos: %f, %f\n", button, thepoint.x, thepoint.y);
+  //  printf("Mouse pressed bt %d  point: %f, %f\n", button, thepoint.x, thepoint.y);
   if (event_funct[4] != NULL)
     event_funct[4](button, (int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[4]);
 }
@@ -202,7 +202,7 @@ int get_mouse_button(NSEventType eventtype)
 
   thepoint = [theEvent locationInWindow];
   button = get_mouse_button([theEvent type]);
-  //  printf("Mouse pressed bt %d  pos: %f, %f\n", button, thepoint.x, thepoint.y);
+  //  printf("Mouse pressed bt %d  point: %f, %f\n", button, thepoint.x, thepoint.y);
   if (event_funct[4] != NULL)
     event_funct[4](button, (int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[4]);
 }
@@ -214,7 +214,7 @@ int get_mouse_button(NSEventType eventtype)
 
   thepoint = [theEvent locationInWindow];
   button = get_mouse_button([theEvent type]);
-  //  printf("Mouse release bt %d  pos: %f, %f\n", button, thepoint.x, thepoint.y);
+  //  printf("Mouse release bt %d  point: %f, %f\n", button, thepoint.x, thepoint.y);
   if (event_funct[5] != NULL)
     event_funct[5](button, (int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[5]);
 }
@@ -226,7 +226,7 @@ int get_mouse_button(NSEventType eventtype)
 
   thepoint = [theEvent locationInWindow];
   button = get_mouse_button([theEvent type]);
-  //  printf("Mouse release bt %d  pos: %f, %f\n", button, thepoint.x, thepoint.y);
+  //  printf("Mouse release bt %d  point: %f, %f\n", button, thepoint.x, thepoint.y);
   if (event_funct[5] != NULL)
     event_funct[5](button, (int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[5]);
 }
@@ -238,7 +238,7 @@ int get_mouse_button(NSEventType eventtype)
 
   thepoint = [theEvent locationInWindow];
   button = get_mouse_button([theEvent type]);
-  //  printf("Mouse release bt %d  pos: %f, %f\n", button, thepoint.x, thepoint.y);
+  //  printf("Mouse release bt %d  point: %f, %f\n", button, thepoint.x, thepoint.y);
   if (event_funct[5] != NULL)
     event_funct[5](button, (int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[5]);
 }
@@ -248,7 +248,7 @@ int get_mouse_button(NSEventType eventtype)
   NSPoint thepoint;
 
   thepoint = [theEvent locationInWindow];
-  //  printf("Mouse moved  pos: %f, %f\n", thepoint.x, thepoint.y);
+  //  printf("Mouse moved  point: %f, %f\n", thepoint.x, thepoint.y);
   if (event_funct[6] != NULL)
     event_funct[6]((int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[6]);
 }
@@ -259,7 +259,7 @@ int get_mouse_button(NSEventType eventtype)
   NSPoint thepoint;
 
   thepoint = [theEvent locationInWindow];
-  //  printf("Mouse moved  pos: %f, %f\n", thepoint.x, thepoint.y);
+  //  printf("Mouse moved  point: %f, %f\n", thepoint.x, thepoint.y);
   if (event_funct[6] != NULL)
     event_funct[6]((int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[6]);
 }
@@ -270,7 +270,7 @@ int get_mouse_button(NSEventType eventtype)
   NSPoint thepoint;
 
   thepoint = [theEvent locationInWindow];
-  //  printf("Mouse moved  pos: %f, %f\n", thepoint.x, thepoint.y);
+  //  printf("Mouse moved  point: %f, %f\n", thepoint.x, thepoint.y);
   if (event_funct[6] != NULL)
     event_funct[6]((int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[6]);
 }
@@ -281,7 +281,7 @@ int get_mouse_button(NSEventType eventtype)
   NSPoint thepoint;
 
   thepoint = [theEvent locationInWindow];
-  //  printf("Mouse moved  pos: %f, %f\n", thepoint.x, thepoint.y);
+  //  printf("Mouse moved  point: %f, %f\n", thepoint.x, thepoint.y);
   if (event_funct[6] != NULL)
     event_funct[6]((int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[6]);
 }
@@ -313,12 +313,12 @@ int get_mouse_button(NSEventType eventtype)
 }
 
 
-- (void) exposeNotification:(NSNotification *)note
+- (void) expointeNotification:(NSNotification *)note
 {
-  //    printf("Expose...\n");
+  //    printf("Expointe...\n");
     if (event_funct[12] != NULL)
       event_funct[12](event_param[12]);
-    //    printf("Expose done.\n");
+    //    printf("Expointe done.\n");
 }
 
 - (void) closeNotification:(NSNotification *)note
@@ -331,7 +331,7 @@ int get_mouse_button(NSEventType eventtype)
 {
   //  if (event_funct[??] != NULL)
   //    event_funct[??](event_param[??]);
-  [self exposeNotification:note];
+  [self expointeNotification:note];
 }
 @end
 
@@ -355,20 +355,20 @@ int get_mouse_button(NSEventType eventtype)
       [win setKeyRepeat:1];
       [win makeKeyAndOrderFront:self];
 
-      //      printf("init ctx: posrent %p ", [NSOpenGLContext posrentContext]);
+      //      printf("init ctx: pointrent %p ", [NSOpenGLContext pointrentContext]);
 
-      //      ctx = [[NSOpenGLContext alloc] initWithFormat:pixFmt shareContext:[NSOpenGLContext posrentContext]]; //other_context];
+      //      ctx = [[NSOpenGLContext alloc] initWithFormat:pixFmt shareContext:[NSOpenGLContext pointrentContext]]; //other_context];
       //      [ctx setView:self];
-      //      [ctx makeposrentContext];
+      //      [ctx makepointrentContext];
 
-      [[self openGLContext] makeposrentContext];
+      [[self openGLContext] makepointrentContext];
       [[self openGLContext] setView:self];
       [self prepareOpenGL];
 
       [self setNextKeyView:self];
 
-      //      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(exposeNotification:) name:@"NSWindowDidExposeNotification" object:nil];
-      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(exposeNotification:) name:@"NSWindowDidBecomeKeyNotification" object:win];
+      //      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(expointeNotification:) name:@"NSWindowDidExpointeNotification" object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(expointeNotification:) name:@"NSWindowDidBecomeKeyNotification" object:win];
       [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(deminiaturizeNotification:) name:@"NSWindowDidDeminiaturizeNotification" object:win];
       [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(closeNotification:) name:@"NSWindowWillCloseNotification" object:win];
       // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ctxNeedsUpdate:)
@@ -436,25 +436,25 @@ int get_mouse_button(NSEventType eventtype)
   glUseProgram(glsl.pixel_program);
   glsl.loc_pixel_texture = glGetUniformLocation(glsl.pixel_program, "texture");
   //glsl.loc_pixel_winhalfsize = glGetUniformLocation(glsl.pixel_program, "winhalfsize");
-  glsl.loc_pixel_position = glGetAttribLocation(glsl.pixel_program, "position");
+  glsl.loc_pixel_pointition = glGetAttribLocation(glsl.pixel_program, "pointition");
   //      printf("err? 0x%x\n", glGetError());
 
   glUseProgram(glsl.image_program);
   glsl.loc_image_texture = glGetUniformLocation(glsl.image_program, "texture");
-  glsl.loc_image_pos = glGetUniformLocation(glsl.image_program, "imagepos");
+  glsl.loc_image_point = glGetUniformLocation(glsl.image_program, "imagepoint");
   glsl.loc_image_size = glGetUniformLocation(glsl.image_program, "imagesize");
   glsl.loc_image_winhalfsize = glGetUniformLocation(glsl.image_program, "winhalfsize");
-  glsl.loc_image_position = glGetAttribLocation(glsl.image_program, "position");
+  glsl.loc_image_pointition = glGetAttribLocation(glsl.image_program, "pointition");
   //      printf("err? 0x%x\n", glGetError());
 
   glUseProgram(glsl.font_program);
   glsl.loc_font_texture = glGetUniformLocation(glsl.font_program, "texture");
   glsl.loc_font_color = glGetUniformLocation(glsl.font_program, "color");
-  glsl.loc_font_posinwin = glGetUniformLocation(glsl.font_program, "fontposinwin");
-  glsl.loc_font_posinatlas = glGetUniformLocation(glsl.font_program, "fontposinatlas");
+  glsl.loc_font_pointinwin = glGetUniformLocation(glsl.font_program, "fontpointinwin");
+  glsl.loc_font_pointinatlas = glGetUniformLocation(glsl.font_program, "fontpointinatlas");
   glsl.loc_font_atlassize = glGetUniformLocation(glsl.font_program, "fontatlassize");
   glsl.loc_font_winhalfsize = glGetUniformLocation(glsl.font_program, "winhalfsize");
-  glsl.loc_font_position = glGetAttribLocation(glsl.font_program, "position");
+  glsl.loc_font_pointition = glGetAttribLocation(glsl.font_program, "pointition");
   //      printf("err? 0x%x\n", glGetError());
 
   glFlush();
@@ -469,10 +469,10 @@ int get_mouse_button(NSEventType eventtype)
 
 - (void) selectGLContext
 {
-  if ([NSOpenGLContext posrentContext] != [self openGLContext])
+  if ([NSOpenGLContext pointrentContext] != [self openGLContext])
     {
-      //      printf("ctx: %p => %p\n", [NSOpenGLContext posrentContext], [self openGLContext]);
-      [[self openGLContext] makeposrentContext];
+      //      printf("ctx: %p => %p\n", [NSOpenGLContext pointrentContext], [self openGLContext]);
+      [[self openGLContext] makepointrentContext];
     }
 }
 
@@ -556,7 +556,7 @@ int get_mouse_button(NSEventType eventtype)
   glUniform1i(glsl.loc_image_texture, 0);
 
   glUniform2f(glsl.loc_image_winhalfsize, size_x/2, size_y/2);
-  glUniform2f(glsl.loc_image_pos, x, size_y - y);
+  glUniform2f(glsl.loc_image_point, x, size_y - y);
   glUniform2f(glsl.loc_image_size, img->width, -img->height);
 
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
@@ -592,8 +592,8 @@ int get_mouse_button(NSEventType eventtype)
   glUniform4fv(glsl.loc_font_color, 1, color_tab);
 
   glUniform2f(glsl.loc_font_winhalfsize, size_x/2, size_y/2);
-  glUniform2f(glsl.loc_font_posinwin, x, size_y - 1 - y);
-  glUniform2f(glsl.loc_font_posinatlas, gx, gy);
+  glUniform2f(glsl.loc_font_pointinwin, x, size_y - 1 - y);
+  glUniform2f(glsl.loc_font_pointinatlas, gx, gy);
   glUniform2f(glsl.loc_font_atlassize, img->width, img->height);
 
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
@@ -679,7 +679,7 @@ void mlx_clear_window(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_ptr)
 }
 
 
-void mlx_expose_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *param)
+void mlx_expointe_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *param)
 {
   [(id)(win_ptr->winid) setEvent:12 andFunc:funct_ptr andParam:param];
 }

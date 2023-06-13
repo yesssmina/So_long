@@ -150,7 +150,7 @@ one byte for each component (see
 manual). This must be translated to fit the
 .I bits_per_pixel
 requirement of the image, and make the color understandable to the display.
-That is the purpose of the
+That is the purpointe of the
 .B mlx_get_color_value
 () function. It takes a standard RGB
 .I color
@@ -163,9 +163,9 @@ least significant bits of this value can be stored in the image. You can
 avoid using this function if there is no conversion needed (eg. in case of
 24 bits depth, or 32 bits depth).
 
-Keep in mind that the least significant bits position depends on the local
+Keep in mind that the least significant bits pointition depends on the local
 computer's endian. If the endian of the image differs from the local endian
-(which shoud only ocposs in a X11 network environment), then the value should
+(which shoud only ocpoints in a X11 network environment), then the value should
 be transformed before being used.
 
 .SH XPM AND PNG IMAGES
@@ -195,7 +195,7 @@ The four functions that create images,
 .B mlx_xpm_file_to_image()
 and
 .B mlx_png_file_to_image()
-, will return NULL if an error ocposs. Otherwise they return a non-null pointer
+, will return NULL if an error ocpoints. Otherwise they return a non-null pointer
 as an image identifier.
 
 

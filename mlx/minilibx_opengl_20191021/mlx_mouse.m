@@ -8,45 +8,45 @@
 
 int	mlx_mouse_hide()
 {
-  //  CGDisplayHidepossor(kCGDirectMainDisplay);
-  [NSpossor hide];
+  //  CGDisplayHidepointsor(kCGDirectMainDisplay);
+  [NSpointsor hide];
   return (0);
 }
 
 int	mlx_mouse_show()
 {
-  //  CGDisplayShowpossor(kCGDirectMainDisplay);
-  [NSpossor unhide];
+  //  CGDisplayShowpointsor(kCGDirectMainDisplay);
+  [NSpointsor unhide];
   return (0);
 }
 
 int	mlx_mouse_move(mlx_win_list_t *win, int x, int y)
 {
   CGPoint	point;
-  NSRect	pos;
+  NSRect	point;
   id	thewin;
 
   thewin = [(id)(win->winid) win];
-  pos = [thewin frame];
-  //  printf("got win pos %f %f\n", pos.origin.x, pos.origin.y);
-  point.x = pos.origin.x + x;
-  point.y = NSHeight([[thewin screen] frame]) - NSHeight([(id)(win->winid) frame]) - pos.origin.y + 1 + y;
-  CGWarpMousepossorposition(point);
-  CGAssociateMouseAndMousepossorposition(true);
+  point = [thewin frame];
+  //  printf("got win point %f %f\n", point.origin.x, point.origin.y);
+  point.x = point.origin.x + x;
+  point.y = NSHeight([[thewin screen] frame]) - NSHeight([(id)(win->winid) frame]) - point.origin.y + 1 + y;
+  CGWarpMousepointsorpointition(point);
+  CGAssociateMouseAndMousepointsorpointition(true);
   return (0);
 }
 
 
-int	mlx_mouse_get_pos(mlx_win_list_t *win, int *x, int *y)
+int	mlx_mouse_get_point(mlx_win_list_t *win, int *x, int *y)
 {
   CGPoint	point;
   id		thewin;
-  NSRect	pos;
+  NSRect	point;
 
   thewin = [(id)(win->winid) win];
-  pos = [(id)(win->winid) frame];
+  point = [(id)(win->winid) frame];
   point = [thewin mouseLocationOutsideOfEventStream];
   *x = point.x;
-  *y = NSHeight(pos) - 1 - point.y;
+  *y = NSHeight(point) - 1 - point.y;
   return (0);
 }

@@ -33,12 +33,12 @@ class WinEvent: NSWindow
 
   func setNotifs()
   {
-      NotificationCenter.default.addObserver(self, selector: #selector(exposeNotification(_:)), name: NSWindow.didBecomeKeyNotification, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(expointeNotification(_:)), name: NSWindow.didBecomeKeyNotification, object: nil)
       NotificationCenter.default.addObserver(self, selector: #selector(deminiaturizeNotification(_:)), name: NSWindow.didDeminiaturizeNotification, object: nil)
       NotificationCenter.default.addObserver(self, selector: #selector(closeNotification(_:)), name: NSWindow.willCloseNotification, object: nil)
 
 /***
-      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(exposeNotification:) name:@"NSWindowDidBecomeKeyNotification" object:win];
+      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(expointeNotification:) name:@"NSWindowDidBecomeKeyNotification" object:win];
       [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(deminiaturizeNotification:) name:@"NSWindowDidDeminiaturizeNotification" object:win];
       [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(closeNotification:) name:@"NSWindowWillCloseNotification" object:win];
 ***/
@@ -185,7 +185,7 @@ class WinEvent: NSWindow
   }
 
 
-  @objc func exposeNotification(_ notification:Notification)
+  @objc func expointeNotification(_ notification:Notification)
   {
 	if (eventFuncts[12] != nil)
 	{
@@ -203,7 +203,7 @@ class WinEvent: NSWindow
 
   @objc func deminiaturizeNotification(_ notification:Notification)
   {
-	exposeNotification(notification)
+	expointeNotification(notification)
   }
 
 }
@@ -398,11 +398,11 @@ public class MlxWin
 	}
   }
 
-  public func putImage(image img:MlxImg, x posx:Int32, y posy:Int32)
+  public func putImage(image img:MlxImg, x pointx:Int32, y pointy:Int32)
   {
 	flushPixels()
 	putImageScale(image:img, sx:0, sy:0, sw:Int32(img.texture_width), sh:Int32(img.texture_height), 
-			   dx:posx, dy:posy, dw:Int32(img.texture_width), dh:Int32(img.texture_height),
+			   dx:pointx, dy:pointy, dw:Int32(img.texture_width), dh:Int32(img.texture_height),
 			   c:UInt32(0xFFFFFFFF))
   }
 
@@ -478,14 +478,14 @@ public class MlxWin
 
 /// finally copy to MTLdrawable to present, using a new commandqueue
     	commandBuffer = commandQueue.makeCommandBuffer()!
-	let posdraw = mlayer.nextDrawable()!
+	let pointdraw = mlayer.nextDrawable()!
 
 	let commandBEncoder = commandBuffer.makeBlitCommandEncoder()!
-	commandBEncoder.copy(from:drawable_image.texture, sourceSlice:0, sourceLevel:0, sourceOrigin: mtl_origin_null, sourceSize: mtl_size_all,  to:posdraw.texture, destinationSlice:0, destinationLevel:0, destinationOrigin: mtl_origin_null)
+	commandBEncoder.copy(from:drawable_image.texture, sourceSlice:0, sourceLevel:0, sourceOrigin: mtl_origin_null, sourceSize: mtl_size_all,  to:pointdraw.texture, destinationSlice:0, destinationLevel:0, destinationOrigin: mtl_origin_null)
 	commandBEncoder.endEncoding()
 
 	commandBuffer.addCompletedHandler { cb in self.GPUbatch -= 1 }
-	commandBuffer.present(posdraw)
+	commandBuffer.present(pointdraw)
         commandBuffer.commit()
 	GPUbatch += 1
   }
@@ -501,20 +501,20 @@ let shaders = """
 using namespace metal;
 
 struct VertexIn {
-    float4 position;
+    float4 pointition;
     float4 UV;
 };
 struct VertexOut {
-    float4 position [[ position ]];
+    float4 pointition [[ pointition ]];
     float4 color;
     float2 UV;
 };
 struct uniforms {
    packed_float2 origin_size;
-   packed_float2 origin_pos;
+   packed_float2 origin_point;
    packed_float2 origin_sub;
    packed_float2 dest_size;
-   packed_float2 dest_pos;
+   packed_float2 dest_point;
    packed_float2 dest_sub;
    packed_float4 color;
 };
@@ -522,13 +522,13 @@ vertex VertexOut basic_vertex_function(const device VertexIn *vertices [[ buffer
 uint vertexID [[ vertex_id ]])
 {
     VertexOut vOut;
-    float4 start = float4((2.0*uni.dest_pos.x)/(uni.dest_size.x-1.0) - 1.0, 1.0 - (2.0*uni.dest_pos.y)/(uni.dest_size.y-1.0) - (uni.dest_sub.y*2.0)/uni.dest_size.y, 0.0, 0.0);
- /*   vOut.position = (start + (vertices[vertexID].position + 1.0) * float4(uni.dest_sub, 0.0, 0.0))/float4(uni.dest_size, 1.0, 1.0); */
+    float4 start = float4((2.0*uni.dest_point.x)/(uni.dest_size.x-1.0) - 1.0, 1.0 - (2.0*uni.dest_point.y)/(uni.dest_size.y-1.0) - (uni.dest_sub.y*2.0)/uni.dest_size.y, 0.0, 0.0);
+ /*   vOut.pointition = (start + (vertices[vertexID].pointition + 1.0) * float4(uni.dest_sub, 0.0, 0.0))/float4(uni.dest_size, 1.0, 1.0); */
 
-    vOut.position = float4(start.x+((vertices[vertexID].position.x + 1.0)*uni.dest_sub.x)/(uni.dest_size.x),
-    		    	   start.y+((vertices[vertexID].position.y + 1.0)*uni.dest_sub.y)/(uni.dest_size.y), 0.0, 1.0);
+    vOut.pointition = float4(start.x+((vertices[vertexID].pointition.x + 1.0)*uni.dest_sub.x)/(uni.dest_size.x),
+    		    	   start.y+((vertices[vertexID].pointition.y + 1.0)*uni.dest_sub.y)/(uni.dest_size.y), 0.0, 1.0);
 
-    vOut.UV = (uni.origin_pos + float2(vertices[vertexID].UV.x, vertices[vertexID].UV.y)*(uni.origin_sub-1.0))/(uni.origin_size-1.0);
+    vOut.UV = (uni.origin_point + float2(vertices[vertexID].UV.x, vertices[vertexID].UV.y)*(uni.origin_sub-1.0))/(uni.origin_size-1.0);
     vOut.color = uni.color;
     return vOut;
 }

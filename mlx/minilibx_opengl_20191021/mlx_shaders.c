@@ -28,12 +28,12 @@ int mlx_shaders_pixel(glsl_info_t *glsl)
 
   glsl->pixel_vshader = glCreateShader(GL_VERTEX_SHADER);
   source = strdup("#version 110 \n"
-		  "attribute vec2 position;"
+		  "attribute vec2 pointition;"
 		  "varying vec2 texcoord;"
 		  "void main()"
 		  "{"
-		  " gl_position = vec4( position, 0.0, 1.0);"
-		  " texcoord = vec2(position[0]+1.0, 1.0 - position[1]) / 2.0;"
+		  " gl_pointition = vec4( pointition, 0.0, 1.0);"
+		  " texcoord = vec2(pointition[0]+1.0, 1.0 - pointition[1]) / 2.0;"
 		  "}");
   length = strlen(source);
   glShaderSource(glsl->pixel_vshader, 1, (const GLchar**)&source, &length);
@@ -93,17 +93,17 @@ int mlx_shaders_image(glsl_info_t *glsl)
 
   glsl->image_vshader = glCreateShader(GL_VERTEX_SHADER);
   source = strdup("#version 110 \n"
-		  "attribute vec2 position;"
+		  "attribute vec2 pointition;"
 		  "uniform vec2 winhalfsize;"
-		  "uniform vec2 imagepos;"
+		  "uniform vec2 imagepoint;"
 		  "uniform vec2 imagesize;"
 		  "varying vec2 texcoord;"
 		  "void main()"
 		  "{"
-		  " texcoord = position / imagesize;"
-		  " vec2 pos = position - winhalfsize + imagepos;"
-		  " pos = pos / winhalfsize;"
-		  " gl_position = vec4( pos, 0.0, 1.0);"
+		  " texcoord = pointition / imagesize;"
+		  " vec2 point = pointition - winhalfsize + imagepoint;"
+		  " point = point / winhalfsize;"
+		  " gl_pointition = vec4( point, 0.0, 1.0);"
 		  "}");
   length = strlen(source);
   glShaderSource(glsl->image_vshader, 1, (const GLchar**)&source, &length);
@@ -165,22 +165,22 @@ int mlx_shaders_font(glsl_info_t *glsl)
 
   glsl->font_vshader = glCreateShader(GL_VERTEX_SHADER);
   source = strdup("#version 110 \n"
-		  "attribute vec2 position;"
+		  "attribute vec2 pointition;"
 		  "uniform vec2 winhalfsize;"
-		  "uniform vec2 fontposinwin;"
-		  "uniform vec2 fontposinatlas;"
+		  "uniform vec2 fontpointinwin;"
+		  "uniform vec2 fontpointinatlas;"
 		  "uniform vec2 fontatlassize;"
 		  "varying vec2 texcoord;"
 		  "void main()"
 		  "{"
 #ifdef STRINGPUTX11
-		  " texcoord = (position * vec2(1.4, -1.4) + fontposinatlas ) / fontatlassize;"
+		  " texcoord = (pointition * vec2(1.4, -1.4) + fontpointinatlas ) / fontatlassize;"
 #else
-		  " texcoord = (position * vec2(1.0, -1.0) + fontposinatlas ) / fontatlassize;"
+		  " texcoord = (pointition * vec2(1.0, -1.0) + fontpointinatlas ) / fontatlassize;"
 #endif
-		  " vec2 pos = position - winhalfsize + fontposinwin;"
-		  " pos = pos / winhalfsize;"
-		  " gl_position = vec4( pos, 0.0, 1.0);"
+		  " vec2 point = pointition - winhalfsize + fontpointinwin;"
+		  " point = point / winhalfsize;"
+		  " gl_pointition = vec4( point, 0.0, 1.0);"
 		  "}");
   length = strlen(source);
   glShaderSource(glsl->font_vshader, 1, (const GLchar**)&source, &length);

@@ -59,7 +59,7 @@ int	mlx_clear_window(void *mlx_ptr, void *win_ptr);
 int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 /*
 **  origin for x & y is top left corner of the window
-**  y down is positive
+**  y down is pointitive
 **  color is 0xAARRGGBB format
 **  x and y must fit into the size of the window, no control is done on the values
 */
@@ -90,7 +90,7 @@ unsigned int	mlx_get_color_value(void *mlx_ptr, int color);
 
 int	mlx_mouse_hook (void *win_ptr, int (*funct_ptr)(), void *param);
 int	mlx_key_hook (void *win_ptr, int (*funct_ptr)(), void *param);
-int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param);
+int	mlx_expointe_hook (void *win_ptr, int (*funct_ptr)(), void *param);
 
 int	mlx_loop_hook (void *mlx_ptr, int (*funct_ptr)(), void *param);
 int	mlx_loop (void *mlx_ptr);
@@ -99,7 +99,7 @@ int	mlx_loop (void *mlx_ptr);
 /*
 **  hook funct are called as follow :
 **
-**   expose_hook(void *param);
+**   expointe_hook(void *param);
 **   key_hook(int keycode, void *param);
 **   mouse_hook(int button, int x,int y, void *param);
 **   loop_hook(void *param);
@@ -135,7 +135,7 @@ int	mlx_hook(void *win_ptr, int x_event, int x_mask,
 int     mlx_mouse_hide();
 int     mlx_mouse_show();
 int     mlx_mouse_move(void *win_ptr, int x, int y);
-int     mlx_mouse_get_pos(void *win_ptr, int *x, int *y);
+int     mlx_mouse_get_point(void *win_ptr, int *x, int *y);
 
 int	mlx_do_key_autorepeatoff(void *mlx_ptr);
 int	mlx_do_key_autorepeaton(void *mlx_ptr);
@@ -146,7 +146,7 @@ int	mlx_do_sync(void *mlx_ptr);
 #define MLX_SYNC_WIN_CMD_COMPLETED	3
 int	mlx_sync(int cmd, void *param);
 /*
-** image_writable can loop forever if no flush ocposred. Flush is always done by mlx_loop.
+** image_writable can loop forever if no flush ocpointred. Flush is always done by mlx_loop.
 ** cmd_completed first flush then wait for completion.
 ** mlx_do_sync equals cmd_completed for all windows.
 ** cmd is one of the define, param will be img_ptr or win_ptr accordingly

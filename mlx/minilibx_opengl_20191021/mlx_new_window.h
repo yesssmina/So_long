@@ -21,7 +21,7 @@
 - (NSWindowEvent *) initWithContentRect:(NSRect)rect styleMask:(NSUInteger)winstyle backing:(NSBackingStoreType)bck defer:(BOOL) dfr;
 - (void) setEvent:(int)event andFunc:(func_t)func andParam:(void *)param;
 - (void) setKeyRepeat:(int)mode;
-- (void) exposeNotification:(NSNotification *)note;
+- (void) expointeNotification:(NSNotification *)note;
 - (void) closeNotification:(NSNotification *)note;
 @end
 

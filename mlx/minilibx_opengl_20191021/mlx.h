@@ -32,8 +32,8 @@
 ** Il y a des differences entre X11 et MacOS.
 ** les numeros des touches ne sont pas les memes,
 ** les numeros des boutons souris ne sont pas les memes.
-** Egalement l'expose est gere differemment, et sous MacOS
-** il est preferable d'entrer le plus tot possible dans mlx_loop,
+** Egalement l'expointe est gere differemment, et sous MacOS
+** il est preferable d'entrer le plus tot pointsible dans mlx_loop,
 ** il est normal que les fenetres n'apparaissent pas avant mlx_loop
 ** (ou bien forcez avec mlx_do_sync mais c'est pas genial).
 ** Sous MacOS, l'octet Alpha est pris en compte dans toutes les
@@ -66,7 +66,7 @@ int	mlx_clear_window(void *mlx_ptr, void *win_ptr);
 int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 /*
 **  origin for x & y is top left corner of the window
-**  y down is positive
+**  y down is pointitive
 **  color is 0x00RRGGBB
 */
 
@@ -96,7 +96,7 @@ unsigned int	mlx_get_color_value(void *mlx_ptr, int color);
 
 int	mlx_mouse_hook (void *win_ptr, int (*funct_ptr)(), void *param);
 int	mlx_key_hook (void *win_ptr, int (*funct_ptr)(), void *param);
-int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param);
+int	mlx_expointe_hook (void *win_ptr, int (*funct_ptr)(), void *param);
 
 int	mlx_loop_hook (void *mlx_ptr, int (*funct_ptr)(), void *param);
 int	mlx_loop (void *mlx_ptr);
@@ -105,7 +105,7 @@ int	mlx_loop (void *mlx_ptr);
 /*
 **  hook funct are called as follow :
 **
-**   expose_hook(void *param);
+**   expointe_hook(void *param);
 **   key_hook(int keycode, void *param);
 **   mouse_hook(int button, int x,int y, void *param);
 **   loop_hook(void *param);
@@ -140,7 +140,7 @@ int	mlx_hook(void *win_ptr, int x_event, int x_mask,
 int     mlx_mouse_hide();
 int     mlx_mouse_show();
 int     mlx_mouse_move(void *win_ptr, int x, int y);
-int     mlx_mouse_get_pos(void *win_ptr, int *x, int *y);
+int     mlx_mouse_get_point(void *win_ptr, int *x, int *y);
 
 int	mlx_do_key_autorepeatoff(void *mlx_ptr);
 int	mlx_do_key_autorepeaton(void *mlx_ptr);

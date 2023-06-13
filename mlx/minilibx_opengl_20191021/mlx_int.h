@@ -24,28 +24,28 @@ typedef struct	glsl_info_s
   GLuint	pixel_vshader;
   GLuint	pixel_fshader;
   GLuint	pixel_program;
-  GLint		loc_pixel_position;
+  GLint		loc_pixel_pointition;
   GLint		loc_pixel_texture;
   GLint		loc_pixel_winhalfsize;
 
   GLuint	image_vshader;
   GLuint	image_fshader;
   GLuint	image_program;
-  GLint		loc_image_position;
+  GLint		loc_image_pointition;
   GLint		loc_image_winhalfsize;
   GLint		loc_image_texture;
-  GLint		loc_image_pos;
+  GLint		loc_image_point;
   GLint		loc_image_size;
 
   GLuint	font_vshader;
   GLuint	font_fshader;
   GLuint	font_program;
-  GLint		loc_font_position;
+  GLint		loc_font_pointition;
   GLint		loc_font_winhalfsize;
   GLint		loc_font_texture;
   GLint		loc_font_color;
-  GLint		loc_font_posinwin;
-  GLint		loc_font_posinatlas;
+  GLint		loc_font_pointinwin;
+  GLint		loc_font_pointinatlas;
   GLint		loc_font_atlassize;
 } glsl_info_t;
 

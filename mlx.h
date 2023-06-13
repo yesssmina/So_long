@@ -17,11 +17,11 @@
 # include <fcntl.h>
 # include <string.h>
 
-typedef struct	s_pos
+typedef struct	s_point
 {
 	int		x;
 	int		y;
-}				t_pos;
+}				t_point;
 
 typedef struct 	s_point 
 {

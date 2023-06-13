@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/03 13:30:26 by sanaggar          #+#    #+#              #
-#    Updated: 2023/06/12 19:18:23 by sanaggar         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = so_long
 
 CC = gcc
@@ -18,6 +6,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRC =	so_long_parsing.c \
 		so_long_utils.c \
+		allocation_map.c \
 		main.c \
 		./GNL/get_next_line.c \
 		./GNL/get_next_line_utils.c \
@@ -31,10 +20,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C ./Libft/
-	cp ./Libft/libft.a $(NAME)
 	make -C ./Printf/
-	cp ./Printf/libftprintf.a $(NAME)
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) -Lmlx -lmlx -L./Libft -lft -L./Printf -lftprintf -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	make clean -C ./Libft/

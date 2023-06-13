@@ -90,8 +90,8 @@ public func mlx_hook_swift(_ winptr:UnsafeRawPointer, _ xevent:Int32, _ xmask:In
 }
 
 
-@_cdecl("mlx_expose_hook")
-public func mlx_expose_hook_swift(_ winptr:UnsafeRawPointer, _ fctptr:UnsafeMutableRawPointer, _ paramptr:UnsafeMutableRawPointer) -> Int32
+@_cdecl("mlx_expointe_hook")
+public func mlx_expointe_hook_swift(_ winptr:UnsafeRawPointer, _ fctptr:UnsafeMutableRawPointer, _ paramptr:UnsafeMutableRawPointer) -> Int32
 {
         let win:MlxWin = _mlx_bridge(ptr:winptr)
         win.addHook(index: 12, fct: fctptr, param: paramptr)
@@ -251,14 +251,14 @@ public func mlx_get_screen_size_swift(_ mlxptr:UnsafeRawPointer, _ sizex:UnsafeM
 @_cdecl("mlx_mouse_hide")
 public func mlx_mouse_hide_swift() -> Int32
 {
-  NSpossor.hide()
+  NSpointsor.hide()
   return Int32(0)
 }
 
 @_cdecl("mlx_mouse_show")
 public func mlx_mouse_show_swift() -> Int32
 {
-  NSpossor.unhide()
+  NSpointsor.unhide()
   return Int32(0)
 }
 
@@ -273,15 +273,15 @@ public func mlx_mouse_move_swift(_ winptr:UnsafeRawPointer, _ x:Int32, _ y:Int32
 	pt.x = frame.origin.x + CGFloat(x)
 ///	pt.y = sframe.size.y - frame.size.y - frame.origin.y + 1 + y
 	pt.y = frame.origin.y + frame.size.height - 1.0 - CGFloat(y)
-	CGWarpMousepossorposition(pt)
-	CGAssociateMouseAndMousepossorposition(UInt32(1))
+	CGWarpMousepointsorpointition(pt)
+	CGAssociateMouseAndMousepointsorpointition(UInt32(1))
 	return Int32(0);
 }
 
 
 
-@_cdecl("mlx_mouse_get_pos")
-public func mlx_mouse_get_pos_swift(_ winptr:UnsafeRawPointer, _ x:UnsafeMutablePointer<Int32>, _ y:UnsafeMutablePointer<Int32>) -> Int32
+@_cdecl("mlx_mouse_get_point")
+public func mlx_mouse_get_point_swift(_ winptr:UnsafeRawPointer, _ x:UnsafeMutablePointer<Int32>, _ y:UnsafeMutablePointer<Int32>) -> Int32
 {
 	let win:MlxWin = _mlx_bridge(ptr:winptr)
 	let frame = win.getWinEFrame()

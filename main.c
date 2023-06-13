@@ -6,121 +6,76 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/12 22:54:55 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 01:34:36 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "./GNL/get_next_line.h"
 
-//check if check_way est ok
-int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
+void	ft_map_et_map_copie(t_map *map, int fd)
 {
-	data->nb_collectible = 0;
-	data->nb_player = 0;
-	data->nb_exit = 0;
-	
-	check_way(map, size, cur, data);
-	printf("**col*%d\n", data->nb_collectible);
-	printf("**play**%d\n", data->nb_player);
-	printf("**ex**%d\n", data->nb_exit);
-	if (data->nb_collectible < 1 || data->nb_exit < 1 || data->nb_player < 1)
-	{	
-		puts("non");
-		return (0);
+	int	i;
+	char *line;
+
+	i = 0;
+	line = NULL;
+	map->map = allocation_map(28, 62);
+	if (!map->map)
+		return ;
+	map->copie = allocation_map(28, 62);
+	if (!map->copie)
+		return ;
+	while ((line = get_next_line(fd)) > 0)
+	{
+		map->map[i] = line;
+		if (!map->map[i])
+			break;
+		if (map->map[i][ft_strlen(map->map[i]) - 1] == '\n')
+			map->map[i][ft_strlen(map->map[i]) - 1] = '\0';
+		map->copie[i] = ft_strdup(map->map[i]);
+		if (!map->copie[i])
+			break;
+		printf("%s\n", map->map[i]);
+		//printf("%s\n\n", map->copie[i]);
+		i++;
 	}
-	puts("oui");
-	return (1);
+	map->map[i] = NULL;
+	map->copie[i] = NULL;
 }
-
-// check si check_map est ok
-int	check_check_map(char **map, t_data *dat, int nb_collectible_needed)
-{
-	int	res;
-	
-	res = check_map(map, nb_collectible_needed, dat);
-	printf("collectible%d\nplayer%d\nexit%d\n", dat->nb_collectible, dat->nb_player, dat->nb_exit);
-	if (res == 0 || dat->nb_collectible == 0 || dat->nb_exit != 1 || dat->nb_player != 1)
-	{	
-		puts("non");
-		return (0);
-	}
-	puts("oui");
-	return (1);
-}
-
-//check les fonctions de mon parsing
-int	check_parsing(char **map, t_data *data, t_point size, t_point cur)
-{
-	if (!check_size(map))
-	{	
-		puts("la");
-		return (0);
-	}
-	if (!check_wall(map))
-	{	
-		puts("la");
-		return (0);
-	}
-
-	if (!check_check_way(map, size, cur, data))
-	{	
-		puts("la");
-		return (0);
-	}
-
-	if (!check_check_map(map, data, data->nb_collectible_needed))
-	{	
-		puts("la");
-		return (0);
-	}
-	data->nb_collectible = 0;
-	return (1);
-}
-
 
 int	main()
 {
-	char	**map;
+	t_map	map;
+	//char	**map;
 	int		fd;
 	int		i;
-	int		max_ligne = 11;
+	int		max_ligne = 29;
 	t_point size;
 	t_point	cur;
 	t_data	data;
 	
-	
 	i = 0;
-	fd = open("./maps/small_map.ber", O_RDONLY);
-	map = allocation_map(9, 16);
-	if (!map)
+	fd = open("./maps/big_map28_62.ber", O_RDONLY);
+	if (fd == -1)
 		return (0);
-	while (i < max_ligne)
-	{
-		map[i] = get_next_line(fd);
-		if (!map[i])
-			break;
-		if (map[i][ft_strlen(map[i]) - 1] == '\n')
-			map[i][ft_strlen(map[i]) - 1] = '\0';
-		printf("%s\n", map[i]);
-		i++;
-	}
-	map[i] = NULL;
+	ft_map_et_map_copie(&map, fd);
 	puts("\n");
 	data.nb_player = 0;
 	data.nb_exit = 0;
-	data.nb_collectible_needed = 5;
-	size.x = ft_strlen(map[0]);
+	size.x = ft_strlen(map.map[0]);
 	size.y = max_ligne;
-	cur.x = 2;
-    cur.y = 1;
+	cur.x = data.coor_player_x;
+    cur.y = data.coor_player_y;
 	if (check_parsing(map, &data, size, cur) == 1)
 	{
+		printf("x%dy%d", data.coor_player_x, data.coor_player_y);
 		puts("oui");
 		return (1);
 	}
 	close(fd);
-	puts("non");
+	
+	puts("non final");
 	return (0);
 }
 

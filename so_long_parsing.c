@@ -6,71 +6,73 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/12 20:19:23 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 01:29:18 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_size(char	**map) //ok
+// check si la map est bien rectangulaire
+int	check_size(char	**map, t_point *point)
 {
 	int		i;
 	int		len_line;
-	t_pos	pos;
 	
 	i = 0;
 	len_line = ft_strlen(map[0]);
-	pos.x = 0;
-	pos.y = 0;
-	while (map[pos.y])
+	point->x = 0;
+	point->y = 0;
+	while (map[point->y])
 	{
-		pos.x = 0;
-		while (map[pos.y][pos.x])
-			pos.x++;
-		i = ft_strlen(map[pos.y]);
-		if (pos.x != len_line)
+		point->x = 0;
+		while (map[point->y][point->x])
+			point->x++;
+		i = ft_strlen(map[point->y]);
+		if (point->x != len_line)
 			return (0);
-		pos.y++;
+		point->y++;
 	}
 	return (1);
 }
 
-int	check_wall(char **map) //ok
+//check si la map est bien entoure de murs
+int	check_wall(char **map, t_point *pos)
 {
-	puts("size");
-	t_pos	pos;
 	
-	pos.x = 0;
-	pos.y = 0;
-	while (map[0] && map[0][pos.x] != '\0')
+	pos->x = 0;
+	pos->y = 0;
+	while (map[0] && map[0][pos->x] != '\0')
 	{
-		if (map[0][pos.x] != '1')
+		if (map[0][pos->x] != '1')
 			return (0);
-		pos.x++;
+		pos->x++;
 	}
-	while (map[pos.y])
+	while (map[pos->y])
 	{
-		pos.x = 0;
-		if (map[pos.y][0] != '1' || map[pos.y][pos.x - 1] != '1')
+		//printf("y:%dx:%d", pos->y, pos->x);
+		if (map[pos->y][0] != '1' || map[pos->y][pos->x - 1] != '1')
+		{
+			puts("ici");
 			return (0);
-		pos.y++;
+		}
+		pos->y++;
 	}
-	//printf("%d", pos.x);
-	pos.x = 0;
-	while (map[pos.y - 1])
+	//printf("%d", pos->x);
+	pos->x = 0;
+	while (map[pos->y - 1])
 	{
-		if (map[0][pos.x] == '\0')
+		if (map[0][pos->x] == '\0')
 			break;
-		if (map[pos.y - 1][pos.x] != '1')
+		if (map[pos->y - 1][pos->x] != '1')
 			return (0);
-		pos.x++;
+		pos->x++;
 	}	
 	return (1);
 }
 
+//check s'il y a un chemin acceddible entre le P, un C et un E
 void	check_way(char **map, t_point size, t_point cur, t_data *data)
 {
-	
 	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x 
 		|| map[cur.y][cur.x] == '1')
 		return ;
@@ -78,10 +80,10 @@ void	check_way(char **map, t_point size, t_point cur, t_data *data)
 	if (map[cur.y][cur.x] == 'P')
 		data->nb_player++;
 	if (map[cur.y][cur.x] == 'C')
-		data->nb_collectible++;
+		data->check_nb_collectible++;
 	if (map[cur.y][cur.x] == 'E')
 		data->nb_exit++;
-	printf("y:%dx:%d\n", cur.y, cur.x);
+	//printf("y:%dx:%d\n", cur.y, cur.x);
 	
 	map[cur.y][cur.x] = '1';
 	check_way(map, size, (t_point){cur.x - 1, cur.y}, data);
@@ -90,37 +92,60 @@ void	check_way(char **map, t_point size, t_point cur, t_data *data)
 	check_way(map, size, (t_point){cur.x, cur.y + 1}, data);
 }
 
-int	check_map(char **map, int nb_collectible_needed, t_data *data)
-{
-	t_pos	pos;
-
-	pos.y = 0;
-	pos.x = 0;
-	while (map[pos.y])
+// check s'il y a le bon nombre de de P, C et E et rien d'autre
+int	check_map(char **map, t_data *data, t_point	*point)
+{	
+	point->y = 0;
+	point->x = 0;
+	printf("collectible%d\nplayer%d\nexit%d\n", data->nb_collectible, data->nb_player, data->nb_exit);
+	while (map[point->y])
 	{
-		while (map[pos.y][pos.x])
+		while (map[point->y][point->x])
 		{
-			if (map[pos.y][pos.x] != '1' && map[pos.y][pos.x] != 'P'
-				&& map[pos.y][pos.x] != 'E' && map[pos.y][pos.x] != 'C' && 
-					map[pos.y][pos.x] != '0')
-						return (0);
-			
-			if (map[pos.y][pos.x] == 'C')
+			if (!egal_ECP1or0(map, point->y, point->x, data))
+			{
+				puts("la");
+				return(0);
+			}
+			if (map[point->y][point->x] == 'C')
 				data->nb_collectible++;
 			
-			if (map[pos.y][pos.x] == 'E')
+			if (map[point->y][point->x] == 'E')
 				data->nb_exit++;
 
-			if (map[pos.y][pos.x] == 'P')
+			if (map[point->y][point->x] == 'P')
 				data->nb_player++;
 			
-			pos.x++;
+			point->x++;
+			//printf("%d %d\n", point->y, point->x);
 		}
-		pos.x = 0;
-		pos.y++;
+		point->x = 0;
+		point->y++;
+		printf("collectiblecheckmap%d\n", data->nb_collectible);
 	}
-	printf("*%d\n*", data->nb_collectible);
-	if (data->nb_collectible != nb_collectible_needed)
-		data->nb_collectible = 0;
+	//if (data->nb_collectible != nb_collectible_needed)
+	//	data->nb_collectible = 0;
 	return (1);
+}
+
+int	egal_ECP1or0(char **map, int y, int x, t_data *data)
+{	
+	//data.coor_player_x = 0;
+	//data.coor_player_y = 0;
+	if (map[y][x] == '1')
+		return (1);
+	if (map[y][x] == '0')
+		return (1);				
+	if (map[y][x] == 'P')
+	{
+		data->coor_player_y = y;
+		data->coor_player_x = x;
+		return (1);
+	}
+	if (map[y][x] == 'E')
+		return (1);
+	if (map[y][x] == 'C')
+		return (1);
+	puts("ici");
+	return (0);
 }

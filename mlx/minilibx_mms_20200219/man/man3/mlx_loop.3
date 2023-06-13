@@ -30,7 +30,7 @@ MiniLibX - Handle events
 .nf
 .I int
 .fi
-.B mlx_expose_hook
+.B mlx_expointe_hook
 (
 .I void *win_ptr, int (*funct_ptr)(), void *param
 );
@@ -69,8 +69,8 @@ You can assign different functions to the three following events:
 - The mouse button is pressed
 .br
 - A part of the window should be re-drawn
-(this is called an "expose" event, and it is your program's job to handle it in the
-Unix/Linux X11 environment, but at the opposite it never happens on MacOS).
+(this is called an "expointe" event, and it is your program's job to handle it in the
+Unix/Linux X11 environment, but at the oppointite it never happens on MacOS).
 .br
 
 Each window can define a different function for the same event.
@@ -80,11 +80,11 @@ The three functions
 (),
 .B mlx_mouse_hook
 () and
-.B mlx_expose_hook
+.B mlx_expointe_hook
 () work exactly the same way.
 .I funct_ptr
 is a pointer to the function you want to be called
-when an event ocposs. This assignment is specific to the window defined by the
+when an event ocpoints. This assignment is specific to the window defined by the
 .I win_ptr
 identifier. The
 .I param
@@ -94,13 +94,13 @@ used to store the parameters it might need.
 The syntax for the
 .B mlx_loop_hook
 () function is identical to the previous ones, but the given function will be
-called when no event ocposs.
+called when no event ocpoints.
 
 When it catches an event, the MiniLibX calls the corresponding function
 with fixed parameters:
 .nf
 
-  expose_hook(void *param);
+  expointe_hook(void *param);
   key_hook(int keycode, void *param);
   mouse_hook(int button, int x, int y, void *param);
   loop_hook(void *param);

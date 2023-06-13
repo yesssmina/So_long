@@ -71,15 +71,15 @@ int	mipng_is_type(unsigned char *ptr, char *type)
 }
 
 
-unsigned char mipng_defilter_none(unsigned char *buff, int pos, int a, int b, int c)
-{ return (buff[pos]); }
-unsigned char mipng_defilter_sub(unsigned char *buff, int pos, int a, int b, int c)
-{ return (buff[pos]+(unsigned int)a); }
-unsigned char mipng_defilter_up(unsigned char *buff, int pos, int a, int b, int c)
-{ return (buff[pos]+(unsigned int)b); }
-unsigned char mipng_defilter_average(unsigned char *buff, int pos, int a, int b, int c)
-{ return (buff[pos]+((unsigned int)a+(unsigned int)b)/2); }
-unsigned char mipng_defilter_paeth(unsigned char *buff, int pos, int a, int b, int c)
+unsigned char mipng_defilter_none(unsigned char *buff, int point, int a, int b, int c)
+{ return (buff[point]); }
+unsigned char mipng_defilter_sub(unsigned char *buff, int point, int a, int b, int c)
+{ return (buff[point]+(unsigned int)a); }
+unsigned char mipng_defilter_up(unsigned char *buff, int point, int a, int b, int c)
+{ return (buff[point]+(unsigned int)b); }
+unsigned char mipng_defilter_average(unsigned char *buff, int point, int a, int b, int c)
+{ return (buff[point]+((unsigned int)a+(unsigned int)b)/2); }
+unsigned char mipng_defilter_paeth(unsigned char *buff, int point, int a, int b, int c)
 {
   int	p;
   int	result;
@@ -92,12 +92,12 @@ unsigned char mipng_defilter_paeth(unsigned char *buff, int pos, int a, int b, i
       result = b;
     else
       result = c;
- return (buff[pos]+result);
+ return (buff[point]+result);
 }
 
 
 
-unsigned char (*(mipng_defilter[]))(unsigned char *buff, int pos, int a, int b, int c) =
+unsigned char (*(mipng_defilter[]))(unsigned char *buff, int point, int a, int b, int c) =
 {
   mipng_defilter_none,
   mipng_defilter_sub,
@@ -109,9 +109,9 @@ unsigned char (*(mipng_defilter[]))(unsigned char *buff, int pos, int a, int b, 
 // only work for mlx mac or img 32bpp
 int	mipng_check_way_img(void *img, unsigned char *buf, png_info_t *pi)
 {
-  unsigned int	posrent_filter;
-  int	ipos;
-  int	bpos;
+  unsigned int	pointrent_filter;
+  int	ipoint;
+  int	bpoint;
   int	ilen;
   int	iline;
   int	blen;
@@ -124,45 +124,45 @@ int	mipng_check_way_img(void *img, unsigned char *buf, png_info_t *pi)
   //  iline = img->width * UNIQ_BPP;
   // ilen = img->width * img->height * UNIQ_BPP;
   ilen = iline*pi->height;
-  ipos = 0;
+  ipoint = 0;
   blen = pi->width * pi->height * pi->bpp + pi->height;  // ??? why + pi->height ??
-  bpos = 0;
-  while (ipos < ilen && bpos < blen)
+  bpoint = 0;
+  while (ipoint < ilen && bpoint < blen)
     {
-      if (ipos % iline == 0)
+      if (ipoint % iline == 0)
 	{
-	  // printf("ipos %d iline %d pi->width %d bpos %d\n", ipos, iline, pi->width, bpos);
-	  if ((posrent_filter = buf[bpos++]) > 4)
+	  // printf("ipoint %d iline %d pi->width %d bpoint %d\n", ipoint, iline, pi->width, bpoint);
+	  if ((pointrent_filter = buf[bpoint++]) > 4)
 	    {  
 	    return (ERR_DATA_FILTER);
 	    }
 	}
-      ibuf[ipos] = mipng_defilter[posrent_filter](buf, bpos,
-						  ipos%iline>3?ibuf[ipos-UNIQ_BPP]:0,
-				 (ipos>=iline)?ibuf[ipos-iline]:0,
-						  (ipos>=iline && ipos%iline>3)?ibuf[ipos-iline-UNIQ_BPP]:0);
-      ipos ++;
-      bpos ++;
+      ibuf[ipoint] = mipng_defilter[pointrent_filter](buf, bpoint,
+						  ipoint%iline>3?ibuf[ipoint-UNIQ_BPP]:0,
+				 (ipoint>=iline)?ibuf[ipoint-iline]:0,
+						  (ipoint>=iline && ipoint%iline>3)?ibuf[ipoint-iline-UNIQ_BPP]:0);
+      ipoint ++;
+      bpoint ++;
       if (pi->depth == 16)
-	bpos ++;
-      if (ipos % 4 == 3 && pi->color == 2)  // no alpha
-	ibuf[ipos++] = 0xFF;
-      if (ipos % iline == pi->width * 4)
-	ipos += iline-pi->width*4;
+	bpoint ++;
+      if (ipoint % 4 == 3 && pi->color == 2)  // no alpha
+	ibuf[ipoint++] = 0xFF;
+      if (ipoint % iline == pi->width * 4)
+	ipoint += iline-pi->width*4;
     }
-  if (ipos != ilen || bpos != blen)
+  if (ipoint != ilen || bpoint != blen)
     {
-      //      printf("check_way err ipos %d vs %d, bpos %d vs %d\n", ipos, ilen, bpos, blen);
+      //      printf("check_way err ipoint %d vs %d, bpoint %d vs %d\n", ipoint, ilen, bpoint, blen);
       return (ERR_DATA_MISMATCH);
     }
-  ipos = 0;
-  while (ipos < ilen)
+  ipoint = 0;
+  while (ipoint < ilen)
     {
-      tmp = ibuf[ipos];
-      ibuf[ipos] = ibuf[ipos+2];
-      ibuf[ipos+2] = tmp;
-      ibuf[ipos+3] = 0xFF - ibuf[ipos+3];
-      ipos += UNIQ_BPP;
+      tmp = ibuf[ipoint];
+      ibuf[ipoint] = ibuf[ipoint+2];
+      ibuf[ipoint+2] = tmp;
+      ibuf[ipoint+3] = 0xFF - ibuf[ipoint+3];
+      ipoint += UNIQ_BPP;
     }
   return (0);
 }
@@ -171,7 +171,7 @@ int	mipng_check_way_img(void *img, unsigned char *buf, png_info_t *pi)
 int	mipng_data(void *img, unsigned char *dat, png_info_t *pi)
 {
   unsigned int	len;
-  int		b_pos;
+  int		b_point;
   unsigned char *buffer;
   int		ret;
   int z_ret;
@@ -179,7 +179,7 @@ int	mipng_data(void *img, unsigned char *dat, png_info_t *pi)
   z_stream z_strm;
   unsigned char z_out[Z_CHUNK];
 
-  b_pos = 0;
+  b_point = 0;
   if (!(buffer = malloc((long long)pi->width*(long long)pi->height*(long long)pi->bpp + pi->height)))
     return (ERR_MALLOC);
   z_strm.zalloc = Z_NULL;
@@ -213,21 +213,21 @@ int	mipng_data(void *img, unsigned char *dat, png_info_t *pi)
 	      free(buffer);
 	      return (ERR_ZLIB);
 	    }
-	  if (b_pos + Z_CHUNK - z_strm.avail_out > pi->width*pi->height*pi->bpp+pi->height)
+	  if (b_point + Z_CHUNK - z_strm.avail_out > pi->width*pi->height*pi->bpp+pi->height)
 	    {
 	      inflateEnd(&z_strm);
 	      free(buffer);
 	      return (ERR_DATA_MISMATCH);
 	    }
-	  bcopy(z_out, buffer+b_pos, Z_CHUNK - z_strm.avail_out);
-	  b_pos += Z_CHUNK - z_strm.avail_out;
+	  bcopy(z_out, buffer+b_point, Z_CHUNK - z_strm.avail_out);
+	  b_point += Z_CHUNK - z_strm.avail_out;
 	}
       dat += len + 4 + 4 + 4;
     } 
   inflateEnd(&z_strm);
-  if (b_pos != pi->width*pi->height*pi->bpp+pi->height)
+  if (b_point != pi->width*pi->height*pi->bpp+pi->height)
     {
-      //      printf("pb : bpos %d vs expected %d\n", b_pos, img->width*img->height*pi->bpp+img->height);
+      //      printf("pb : bpoint %d vs expected %d\n", b_point, img->width*img->height*pi->bpp+img->height);
       free(buffer);
       return (ERR_DATA_MISMATCH);
     }
