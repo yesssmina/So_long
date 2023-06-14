@@ -6,13 +6,13 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:54:20 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:29:52 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:08:17 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char	*s)
+size_t	ft_strlen_gnl(const char	*s)
 {
 	size_t	i;
 
@@ -37,7 +37,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	}
 	if (!s2)
 		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	str = malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2)) + 1);
 	if (!str)
 		return (NULL);
 	while (s1[++i])
@@ -57,7 +57,7 @@ char	*ft_strchr_gnl(char *s, int c)
 	if (!s)
 		return (0);
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
+		return ((char *)&s[ft_strlen_gnl(s)]);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char) c)

@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:52:35 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:29:18 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:13:00 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*new_stash(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	str = malloc(sizeof(char) * (ft_strlen(stash) - i + 1));
+	str = malloc(sizeof(char) * (ft_strlen_gnl(stash) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;

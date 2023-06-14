@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:55:24 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:29:37 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:11:25 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 char	*get_next_line(int fd);
 char	*ft_strchr_gnl(char	*s, int c);
 char	*ft_strjoin_gnl(char *s1, char *s2);
-size_t	ft_strlen(const char	*s);
+size_t	ft_strlen_gnl(const char	*s);
 char	*read_and_stash(int fd, char *stash);
 
 #endif
