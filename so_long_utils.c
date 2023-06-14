@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/14 20:33:01 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:05:38 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
 {
 	//data->nb_collectible = 0;
-	//data->check_nb_collectible = 0;
-	//data->nb_player = 0;
+	data->check_nb_collectible = 0;
+	data->nb_player = 0;
 	//data->nb_exit = 0;
 	
-	check_way(data, size, cur, map);
+	check_way(map, size, cur, data);
 	printf("**col*%d\n", data->nb_collectible);
 	printf("**play**%d\n", data->nb_player);
 	printf("**ex**%d\n", data->nb_exit);
@@ -77,6 +77,8 @@ int	check_parsing(t_map map, t_data *data, t_point size, t_point cur)
 		puts("non_map");
 		return (0);
 	}
+	cur.y = data->coor_player_y;
+	cur.x = data->coor_player_x;
 	if (!check_check_way(map.map, size, cur, data))
 	{	
 		puts("non_way");

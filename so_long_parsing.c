@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/14 20:28:27 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:02:35 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,38 @@ int	check_wall(char **map, t_point *pos)
 }
 
 //check s'il y a un chemin accessible entre le P, un C et un E
-void	check_way(t_data *data, t_point size, t_point cur, char **map)
+void	check_way(char **map, t_point size, t_point cur, t_data *data)
 {
-	printf("check_way:\ncollectible%d\nplayer%d\nexit%d\n**check_collll%d***\n", data->nb_collectible, data->nb_player, data->nb_exit, data->check_nb_collectible);
-	puts("laaaaaaaaaaa");
+	//printf("coordonnesplayery:%dx:%d\n", data->coor_player_y, data->coor_player_x);
+	//printf("check_way:\ncollectible%d\nplayer%d\nexit%d\n**check_collll%d***\n", data->nb_collectible, data->nb_player, data->nb_exit, data->check_nb_collectible);
+	//puts("laaaaaaaaaaa");
+	printf("y:%dx:%d\n", cur.y, cur.x);
 	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x 
 		|| map[cur.y][cur.x] == '1')
 		return ;
 	
 	if (map[cur.y][cur.x] == 'P')
+	{
+		puts("111111player");
 		data->nb_player++;
+	}
 	if (map[cur.y][cur.x] == 'C')
+	{
+		printf("---checkincrementation%d---\n", data->check_nb_collectible);
 		data->check_nb_collectible++;
+	}
 	if (map[cur.y][cur.x] == 'E')
+	{
+		puts("111111exit");
 		data->nb_exit++;
-	//printf("y:%dx:%d\n", cur.y, cur.x);
+	}
 
 	
 	map[cur.y][cur.x] = '1';
-	check_way(data, size, (t_point){cur.x - 1, cur.y}, map);
-	check_way(data, size, (t_point){cur.x + 1, cur.y}, map);
-	check_way(data, size, (t_point){cur.x, cur.y - 1}, map);
-	check_way(data, size, (t_point){cur.x, cur.y + 1}, map);
+	check_way(map, size, (t_point){cur.x - 1, cur.y}, data);
+	check_way(map, size, (t_point){cur.x + 1, cur.y}, data);
+	check_way(map, size, (t_point){cur.x, cur.y - 1}, data);
+	check_way(map, size, (t_point){cur.x, cur.y + 1}, data);
 }
 
 // check s'il y a le bon nombre de de P, C et E et rien d'autre
@@ -123,8 +133,6 @@ int	check_map(char **map, t_data *data, t_point	*point)
 		point->y++;
 		//printf("collectiblecheckmap%d\n", data->nb_collectible);
 	}
-	//if (data->nb_collectible != nb_collectible_needed)
-	//	data->nb_collectible = 0;
 	printf("check_map:\ncollectible%d\nplayer%d\nexit%d\n***\n", data->nb_collectible, data->nb_player, data->nb_exit);
 	return (1);
 }
@@ -158,7 +166,7 @@ void ft_init(t_data *data)
 	data->nb_collectible = 0;
 	data->nb_exit = 0;
 	data->nb_player = 0;
-	data->check_nb_collectible = 0;
-	data->coor_player_x =0;
+	//data->check_nb_collectible = 0;
+	data->coor_player_x = 0;
 	data->coor_player_y = 0;
 }

@@ -54,7 +54,7 @@ typedef struct 		s_map
 
 int	check_size(t_map *data, char **map, t_point *point);
 int	check_wall(char **map, t_point	*pos);
-void	check_way(t_data *data, t_point size, t_point cur, char **map);
+void	check_way(char **map, t_point size, t_point cur, t_data *data);
 int	check_map(char **map, t_data *data, t_point *point);
 int	check_check_way(char **map, t_point	size, t_point cur, t_data *data);
 int	check_check_map(char **map, t_data *data, t_point *point);
