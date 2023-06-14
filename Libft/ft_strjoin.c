@@ -6,13 +6,13 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 20:43:42 by sam               #+#    #+#             */
-/*   Updated: 2023/06/08 16:12:52 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/15 00:17:18 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		i;

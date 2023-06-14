@@ -6,8 +6,10 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRC =	so_long_parsing.c \
 		so_long_utils.c \
-		allocation_map.c \
+		allocation_et_implementation_maps.c \
 		main.c \
+		ft_error.c \
+		initialisation_structure.c \
 		./GNL/get_next_line.c \
 		./GNL/get_next_line_utils.c \
 

@@ -1,17 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocation_map.c                                   :+:      :+:    :+:   */
+/*   allocation_et_implementation_maps.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:31:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/13 23:31:58 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/15 01:05:19 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+//calcul dimension map fichier pour allocation et imple' map 
+void	cacul_nb_lignes_et_colones(t_map *dimension)
+{
+	int fd0;
+	int c;
+	
+	fd0 = open(dimension->chemin_vers_fichier, O_RDONLY);
+	if (fd0 == -1)
+		return ;
+	while(read(fd0, &c, 1) == 1)
+	{
+		if (c == '\n')
+		{
+			dimension->nb_lignes++;
+			dimension->nb_colones = 0;
+		}
+		else
+			dimension->nb_colones++;
+	}
+	dimension->nb_lignes++;
+	close(fd0);
+}
+
+// Alloue la map
 char **allocation_map(int nb_ligne, int nb_colonne) 
 {
     int	i;
@@ -36,11 +60,36 @@ char **allocation_map(int nb_ligne, int nb_colonne)
             free(map);
             return (NULL);
         }
-		//printf("i:%dlignes:%d\n", i, nb_ligne);
         i++;
     }
-	//map[i] = malloc(sizeof(char));
-	//map[i] = NULL;
     return (map);
 }
 
+
+//implementation map et map_copie
+void	ft_map_et_map_copie(t_map *map, int fd)
+{
+	int	i;
+	char *line;
+
+	i = 0;
+	line = NULL;
+	if (!(map->map = map->copie = allocation_map(map->nb_lignes, map->nb_colones)))
+		return ;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		map->map[i] = line;
+		if (!map->map[i])
+			break;
+		if (map->map[i][ft_strlen(map->map[i]) - 1] == '\n')
+			map->map[i][ft_strlen(map->map[i]) - 1] = '\0';
+		map->copie[i] = ft_strdup(map->map[i]);
+		if (!map->copie[i])
+			break;
+		printf("%s\n", map->map[i]);
+		i++;
+	}
+	map->map[i] = NULL;
+	map->copie[i] = NULL;
+	puts("");
+}

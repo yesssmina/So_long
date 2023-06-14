@@ -63,4 +63,6 @@ char **allocation_map(int nb_ligne, int nb_colonne);
 int	egal_ECP1or0(char **map, int y, int x, t_data *data);
 void	ft_map_et_map_copie(t_map *map, int fd);
 void	cacul_nb_lignes_et_colones(t_map	*dimension);
-void ft_init(t_data *data);
+void 	ft_init(t_data *data);
+void	ft_init1(t_map *map, t_data *data, t_point *cur, t_point *size);
+char	*error_mess(char	*message);

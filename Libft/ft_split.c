@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 00:14:52 by sam               #+#    #+#             */
-/*   Updated: 2023/06/07 14:55:51 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/15 00:19:51 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ size_t	ft_nb_c_in_list(char const *s, char c)
 	return (v.j);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	t_split	v;
 

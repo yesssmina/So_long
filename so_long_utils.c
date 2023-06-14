@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/14 22:05:38 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/14 23:07:16 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 //check if check_way est ok
 int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
 {
-	//data->nb_collectible = 0;
 	data->check_nb_collectible = 0;
 	data->nb_player = 0;
-	//data->nb_exit = 0;
+	data->nb_exit = 0;
 	
 	check_way(map, size, cur, data);
-	printf("**col*%d\n", data->nb_collectible);
-	printf("**play**%d\n", data->nb_player);
-	printf("**ex**%d\n", data->nb_exit);
+	//printf("**col*%d\n", data->nb_collectible);
+	//printf("**play**%d\n", data->nb_player);
+	//printf("**ex**%d\n", data->nb_exit);
 	printf("**checkcol*%d\n", data->check_nb_collectible);
 	if (data->nb_collectible != data->check_nb_collectible || data->nb_exit < 1 || data->nb_player < 1)
 	{	
@@ -48,8 +47,8 @@ int	check_check_map(char **map, t_data *data, t_point	*point)
 		puts("cccheck map non");
 		return (0);
 	}
-	printf("collectible%d\nplayer%d\nexit%d\n", data->nb_collectible, data->nb_player, data->nb_exit);
-	puts("ccheck map oui");
+	//printf("collectible%d\nplayer%d\nexit%d\n", data->nb_collectible, data->nb_player, data->nb_exit);
+	//puts("ccheck map oui");
 	return (1);
 }
 
@@ -84,7 +83,7 @@ int	check_parsing(t_map map, t_data *data, t_point size, t_point cur)
 		puts("non_way");
 		return (0);
 	}
-	printf("******collectible%d\nplayer%d\nexit%d*****\n", data->nb_collectible, data->nb_player, data->nb_exit);
+	//printf("******collectible%d\nplayer%d\nexit%d*****\n", data->nb_collectible, data->nb_player, data->nb_exit);
 	data->nb_collectible = 0;
 	return (1);
 }

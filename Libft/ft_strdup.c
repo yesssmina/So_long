@@ -6,13 +6,13 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:35:44 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/13 22:31:47 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/15 00:15:41 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char	*src)
+char	*ft_strdup(char	*src)
 {
 	int		i;
 	char	*copy;
