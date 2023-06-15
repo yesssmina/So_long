@@ -52,17 +52,18 @@ typedef struct 		s_map
 	char	*chemin_vers_fichier;
 }					t_map;
 
-int	check_size(t_map *data, char **map, t_point *point);
-int	check_wall(char **map, t_point	*pos);
+int		check_size(t_map *data, char **map, t_point *point);
+int		check_wall(char **map, t_point	*pos);
 void	check_way(char **map, t_point size, t_point cur, t_data *data);
-int	check_map(char **map, t_data *data, t_point *point);
-int	check_check_way(char **map, t_point	size, t_point cur, t_data *data);
-int	check_check_map(char **map, t_data *data, t_point *point);
-int	check_parsing(t_map map, t_data *data, t_point size, t_point cur);
-char **allocation_map(int nb_ligne, int nb_colonne);
-int	egal_ECP1or0(char **map, int y, int x, t_data *data);
+int		check_map(char **map, t_data *data, t_point *point);
+int		check_check_way(char **map, t_point	size, t_point cur, t_data *data);
+int		check_check_map(char **map, t_data *data, t_point *point);
+int		check_parsing(t_map map, t_data *data, t_point size, t_point cur);
+char	 **allocation_map(int nb_ligne, int nb_colonne);
+int		egal_ECP1or0(char **map, int y, int x, t_data *data);
 void	ft_map_et_map_copie(t_map *map, int fd);
 void	cacul_nb_lignes_et_colones(t_map	*dimension);
 void 	ft_init(t_data *data);
 void	ft_init1(t_map *map, t_data *data, t_point *cur, t_point *size);
 char	*error_mess(char	*message);
+int		check_ber(char *fichier);

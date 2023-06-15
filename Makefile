@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 SRC =	so_long_parsing.c \
-		so_long_utils.c \
+		check_parsing.c \
 		allocation_et_implementation_maps.c \
 		main.c \
 		ft_error.c \

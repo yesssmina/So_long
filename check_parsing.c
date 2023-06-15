@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   check_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/14 23:07:16 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/15 02:07:38 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,9 @@ int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
 	data->nb_exit = 0;
 	
 	check_way(map, size, cur, data);
-	//printf("**col*%d\n", data->nb_collectible);
-	//printf("**play**%d\n", data->nb_player);
-	//printf("**ex**%d\n", data->nb_exit);
-	printf("**checkcol*%d\n", data->check_nb_collectible);
-	if (data->nb_collectible != data->check_nb_collectible || data->nb_exit < 1 || data->nb_player < 1)
-	{	
-		//puts("non");
-		return (0);
-	}
-	//puts("ccwayoui");
+	if (data->nb_collectible != data->check_nb_collectible || 
+		data->nb_exit < 1 || data->nb_player < 1)
+			return (0);
 	return (1);
 }
 
@@ -42,13 +35,9 @@ int	check_check_map(char **map, t_data *data, t_point	*point)
 	data->nb_exit = 0;
 	
 	res = check_map(map, data, point);
-	if (res == 0 || data->nb_collectible == 0 || data->nb_exit != 1 || data->nb_player != 1)
-	{	
-		puts("cccheck map non");
-		return (0);
-	}
-	//printf("collectible%d\nplayer%d\nexit%d\n", data->nb_collectible, data->nb_player, data->nb_exit);
-	//puts("ccheck map oui");
+	if (res == 0 || data->nb_collectible == 0 || 
+		data->nb_exit != 1 || data->nb_player != 1)
+			return (0);
 	return (1);
 }
 
@@ -60,30 +49,16 @@ int	check_parsing(t_map map, t_data *data, t_point size, t_point cur)
 	int	i;
 	
 	if (!check_size(&map, map.map, &point))
-	{	
-		puts("non_size");
-		return (0);
-	}
+		error_mess("Error\nLa map n'est pas rectangulaire :(\n");
 	if (!check_wall(map.map, &pos))
-	{	
-		puts("non_wall");
-		return (0);
-	}
-
+		error_mess("Error\nLa map n'est pas entouree de murs :(\n");
 	i = 0;
 	if (!check_check_map(map.copie, data, &point))
-	{	
-		puts("non_map");
-		return (0);
-	}
+		error_mess("Error\nIl y a tres certainement un intru dans la map!\n");
 	cur.y = data->coor_player_y;
 	cur.x = data->coor_player_x;
 	if (!check_check_way(map.map, size, cur, data))
-	{	
-		puts("non_way");
-		return (0);
-	}
-	//printf("******collectible%d\nplayer%d\nexit%d*****\n", data->nb_collectible, data->nb_player, data->nb_exit);
+		error_mess("Error\nSurement un endroit inaccessible... Verifie le chemin!\n");
 	data->nb_collectible = 0;
 	return (1);
 }

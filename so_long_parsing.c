@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/15 00:43:44 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/15 02:13:57 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	check_size(t_map *data, char	**map, t_point *point)
 //check si la map est bien entoure de murs
 int	check_wall(char **map, t_point *pos)
 {
-	
 	pos->x = 0;
 	pos->y = 0;
 	while (map[0] && map[0][pos->x] != '\0')
