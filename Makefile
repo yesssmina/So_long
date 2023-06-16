@@ -10,6 +10,9 @@ SRC =	so_long_parsing.c \
 		main.c \
 		ft_error.c \
 		initialisation_structure.c \
+		mlx.c \
+		check_parsing_final.c \
+		check_ber.c \
 		./GNL/get_next_line.c \
 		./GNL/get_next_line_utils.c \
 

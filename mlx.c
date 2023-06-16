@@ -1,32 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testpixel.c                                        :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:54:29 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:52:24 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:03:50 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "so_long.h"
 
-typedef struct	s_vars 
-{
-	void	*mlx;
-	void	*win;
-}				t_vars;
-
-typedef struct	s_data 
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 void ft_putchar(char c)
 {
@@ -41,7 +26,7 @@ int	deal_key(int key, void *param)
 	return (0);
 }
 
-void	ft_mlx_pixel_put(t_data *img, int x, int y, int color)
+void	ft_mlx_pixel_put(t_data_mlx *img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -49,7 +34,7 @@ void	ft_mlx_pixel_put(t_data *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	ft_close(int keycode, t_vars *vars)
+int	ft_close(int keycode, t_vars_mlx *vars)
 {
 	(void)keycode;
 	
@@ -64,8 +49,8 @@ int main()
 	char	*path;
 	int		img_width;
 	int		img_height;
-	t_data	img;
-	t_vars	vars;
+	t_data_mlx	img;
+	t_vars_mlx	vars;
 	
 	path = "./images/imagepink.xpm";
 	img_width = 500;

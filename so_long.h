@@ -18,12 +18,24 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdlib.h>
+#include <unistd.h>
+#include <mlx.h>
 
-//typedef struct	s_pos
-//{
-//	int		x;
-//	int		y;
-//}				t_pos;
+
+typedef struct	s_vars_mlx 
+{
+	void	*mlx;
+	void	*win;
+}				t_vars_mlx;
+
+typedef struct	s_data_mlx
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data_mlx;
 
 typedef struct	s_data
 {
@@ -33,8 +45,6 @@ typedef struct	s_data
 	int check_nb_collectible;
 	int	coor_player_x;
 	int	coor_player_y;
-	//int		i;
-	//int		j;
 }				t_data;
 
 typedef struct 	s_point 
@@ -67,3 +77,9 @@ void 	ft_init(t_data *data);
 void	ft_init1(t_map *map, t_data *data, t_point *cur, t_point *size);
 char	*error_mess(char	*message);
 int		check_ber(char *fichier);
+void 	check_parsing_final(char *chemin_fichier);
+
+void ft_putchar(char c);
+int	deal_key(int key, void *param);
+void	ft_mlx_pixel_put(t_data_mlx *img, int x, int y, int color);
+int	ft_close(int keycode, t_vars_mlx *vars);
