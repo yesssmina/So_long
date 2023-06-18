@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/17 18:19:50 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/19 01:25:53 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,7 @@ int	check_map(char **map, t_data *data, t_point	*point)
 		while (map[point->y][point->x])
 		{
 			if (!egal_ECP1or0(map, point->y, point->x, data))
-			{
-				puts("la");
 				return(0);
-			}
 			if (map[point->y][point->x] == 'C')
 				data->nb_collectible++;
 			if (map[point->y][point->x] == 'E')

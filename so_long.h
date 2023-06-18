@@ -92,3 +92,4 @@ void ft_putchar(char c);
 int	deal_key(int key, void *param);
 void	ft_mlx_pixel_put(t_data_mlx *img, int x, int y, int color);
 int	ft_close(int keycode, t_vars_mlx *vars);
+void	put_texture(void *mlx, t_map *map, t_data_mlx *img, t_vars_mlx *vars);
