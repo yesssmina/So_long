@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/15 02:13:57 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:19:50 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_size(t_map *data, char	**map, t_point *point)
 		while (map[point->y][point->x])
 			point->x++;
 		i = ft_strlen(map[point->y]);
-		if (point->x != data->nb_colones)
+		if (point->x != data->nb_colones -1)
 			return (0);
 		point->y++;
 	}

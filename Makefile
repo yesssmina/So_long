@@ -2,7 +2,7 @@ NAME = so_long
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 SRC =	so_long_parsing.c \
 		check_parsing.c \
@@ -26,7 +26,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C ./Libft/
 	make -C ./Printf/
-	$(CC) $(OBJ) -Lmlx -lmlx -L./Libft -lft -L./Printf -lftprintf -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -Lmlx -lmlx -L./Libft -lft -L./Printf -lftprintf -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	make clean -C ./Libft/

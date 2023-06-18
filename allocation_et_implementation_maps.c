@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:31:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/15 01:05:19 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/17 22:46:43 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	cacul_nb_lignes_et_colones(t_map *dimension)
 	int fd0;
 	int c;
 	
+	dimension->nb_colones = 0;
 	fd0 = open(dimension->chemin_vers_fichier, O_RDONLY);
 	if (fd0 == -1)
 		return ;
@@ -32,6 +33,7 @@ void	cacul_nb_lignes_et_colones(t_map *dimension)
 			dimension->nb_colones++;
 	}
 	dimension->nb_lignes++;
+	dimension->nb_colones++;
 	close(fd0);
 }
 
@@ -42,7 +44,7 @@ char **allocation_map(int nb_ligne, int nb_colonne)
 	int	j;
 	
 	i = 0;
-    char **map = malloc(sizeof(char *) * nb_ligne);
+    char **map = malloc(sizeof(char *) * (nb_ligne + 1));
     if (!map)
         return (NULL);
 
