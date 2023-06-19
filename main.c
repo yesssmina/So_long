@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/19 20:17:18 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/19 23:08:50 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_init_img(t_data_mlx	*img)
 	img->path_wall = NULL;
 	img->path_collectible = NULL;
 	img->path_player = NULL;
+	img->path_exit = NULL;
 	img->img_width = 0;
 	img->img_height = 0;
 	img->wall_width = 0;

@@ -27,6 +27,7 @@ typedef struct	s_data_mlx
 	char	*path_wall;
 	char	*path_collectible;
 	char	*path_player;
+	char	*path_exit;
 	int		img_width;
 	int		img_height;
 	int		wall_width;
@@ -35,6 +36,7 @@ typedef struct	s_data_mlx
 	void	*wall;
 	void	*collectible;
 	void	*player;
+	void	*exit;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
