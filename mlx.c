@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:54:29 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/19 00:36:06 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/19 22:23:45 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,22 @@ void	put_texture(void *mlx, t_map *map, t_data_mlx *img, t_vars_mlx *vars)
 	point.x = 0;
 	while (map->copie[point.y])
 	{
-		//printf("%s\n", map->map[point.y]);
+		//printf("%s\n", map->copie[point.y]);
 		while (map->copie[point.y][point.x])
 		{
-			if (map->copie[point.y][point.x] == '0')
-				mlx_put_image_to_window(mlx, vars->win, img->img, point.x * 50, point.y * 50);
+			mlx_put_image_to_window(mlx, vars->win, img->img, point.x * 50, point.y * 50);
 			if (map->copie[point.y][point.x] == '1')
 				mlx_put_image_to_window(mlx, vars->win, img->wall, point.x * 50, point.y * 50);
+			if (map->copie[point.y][point.x] == 'C')
+				mlx_put_image_to_window(mlx, vars->win, img->collectible, point.x * 50, point.y * 50);
+			if (map->copie[point.y][point.x] == 'P')
+				mlx_put_image_to_window(mlx, vars->win, img->player, point.x * 50, point.y * 50);
+			//}//faire pitch et sortie xpm
+			//if (map->copie[point.y][point.x] == 'E')
+			//{
+			//	mlx_put_image_to_window(mlx, vars->win, img->img, point.x * 50, point.y * 50);
+			//	mlx_put_image_to_window(mlx, vars->win, img->collectible, point.x * 50, point.y * 50);
+			//}
 			point.x++;
 		}
 		point.x = 0;
@@ -71,7 +80,9 @@ void	do_mlx(t_data_mlx *img, t_vars_mlx *vars, t_map *map)
 	//ft_init_img(&img);
 	img->path = "./images/texture.xpm";
 	img->path_wall = "./images/wall.xpm";
-	img->img_width = map->nb_colones * 50;
+	img->path_collectible = "./images/diams.xpm";
+	img->path_player = "./images/pitch_right.xpm";
+	img->img_width = (map->nb_colones - 1) * 50;
 	img->img_height = map->nb_lignes * 50;
 	img->wall_width = 0;
 	img->wall_height = 0;
@@ -83,9 +94,12 @@ void	do_mlx(t_data_mlx *img, t_vars_mlx *vars, t_map *map)
 	
 	img->img = mlx_xpm_file_to_image(mlx, img->path, &(img->wall_width), &(img->wall_height));
 	img->wall = mlx_xpm_file_to_image(mlx, img->path_wall, &(img->wall_width), &(img->wall_height));
-	
+	img->collectible = mlx_xpm_file_to_image(mlx, img->path_collectible, &(img->wall_width), &(img->wall_height));
+	img->player = mlx_xpm_file_to_image(mlx, img->path_player, &(img->wall_width), &(img->wall_height));
+	//printf("widh%d\nheight%d\n", img->wall_width, img->wall_height);
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), &(img->line_length), &(img->endian));
-	//printf("img%p", img->img);
+	printf("img%p", img->img);
+	printf("player%p", img->player);
 	
 	//mlx_put_image_to_window(mlx, vars->win, img->img, 0 * 50, 0 * 50);
 	//mlx_put_image_to_window(mlx, vars->win, img->wall, 1 * 50, 1 * 50);

@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:31:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/19 01:31:25 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:39:29 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_map_et_map_copie(t_map *map, int fd)
 			break;
 		if (map->map[i][ft_strlen(map->map[i]) - 1] == '\n')
 			map->map[i][ft_strlen(map->map[i]) - 1] = '\0';
-		ft_strlcpy(map->copie[i], map->map[i], ft_strlen(map->map[i]));
+		ft_strlcpy(map->copie[i], map->map[i], ft_strlen(map->map[i]) + 1);
 		if (!map->copie[i])
 			break;
 		printf("%s\n", map->map[i]);

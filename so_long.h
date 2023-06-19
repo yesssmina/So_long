@@ -25,12 +25,16 @@ typedef struct	s_data_mlx
 {
 	char	*path;
 	char	*path_wall;
+	char	*path_collectible;
+	char	*path_player;
 	int		img_width;
 	int		img_height;
 	int		wall_width;
 	int		wall_height;
 	void	*img;
 	void	*wall;
+	void	*collectible;
+	void	*player;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
