@@ -6,27 +6,34 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/19 01:25:53 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/25 23:05:03 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 // check si la map est bien rectangulaire
-int	check_size(t_map *data, char	**map, t_point *point)
+int	check_size(char	**map, t_point *point)
 {
 	int		i;
 	
 	i = 0;
-	point->x = 0;
 	point->y = 0;
+
+	while (map[point->y][i] != '\0' && map[point->y][i] != '\n')
+			i++;
 	while (map[point->y])
 	{
+		//printf("y%d\n", point->y);
 		point->x = 0;
-		while (map[point->y][point->x])
+		
+		while (map[point->y][point->x] != '\0' && map[point->y][point->x] != '\n')
+		{
 			point->x++;
-		i = ft_strlen(map[point->y]);
-		if (point->x != data->nb_colones -1)
+		}
+		//printf("i%dx%d\n", i, point->x);
+
+		if (point->x != i)
 			return (0);
 		point->y++;
 	}
@@ -124,6 +131,5 @@ int	egal_ECP1or0(char **map, int y, int x, t_data *data)
 		return (1);
 	if (map[y][x] == 'C')
 		return (1);
-	puts("ici");
 	return (0);
 }

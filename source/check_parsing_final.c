@@ -6,11 +6,11 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:20:34 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/17 23:09:14 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/23 21:14:28 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void check_parsing_final(char *chemin_fichier, t_map *map) 
 {
@@ -37,10 +37,10 @@ void check_parsing_final(char *chemin_fichier, t_map *map)
 	ft_init1(map, &data, &cur, &size);
 	size.y = map->nb_lignes;
 	size.x = map->nb_colones;
-	printf("lignes%d\ncolones%d\n", size.y, size.x);
+	//printf("lignes%d\ncolones%d\n", size.y, size.x);
 	if (check_parsing(map, &data, size, cur) == 1) 
 	{
-		printf("==lignes%d\ncolones%d==\n", map->nb_lignes, map->nb_colones);
+		//printf("==lignes%d\ncolones%d==\n", map->nb_lignes, map->nb_colones);
 		close(fd);
 		return;
 	}

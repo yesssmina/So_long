@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   x.c                                                :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 16:10:46 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/05/03 16:10:48 by sanaggar         ###   ########.fr       */
+/*   Created: 2023/06/14 23:42:52 by sanaggar          #+#    #+#             */
+/*   Updated: 2023/06/23 21:14:22 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+# include "../so_long.h"
 
-void	ft_upperx(unsigned int d, int	*print)
+char	*error_mess(char	*message)
 {
-	if (d < 0)
-		return ;
-	ft_putnbr_base("0123456789ABCDEF", d, print);
+	ft_putstr_fd(message, 1);
+	exit(EXIT_FAILURE);
 }
 
-void	ft_x(unsigned int d, int	*print)
-{
-	if (d < 0)
-		return ;
-	ft_putnbr_base("0123456789abcdef", d, print);
-}

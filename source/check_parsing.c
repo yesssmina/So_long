@@ -6,11 +6,11 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/17 23:10:55 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:09:16 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 //check if check_way est ok
 int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
@@ -51,7 +51,7 @@ int	check_parsing(t_map *map, t_data *data, t_point size, t_point cur)
 	t_point	pos;
 	int	i;
 	
-	if (!check_size(map, map->map, &point))
+	if (!check_size(map->map, &point))
 		error_mess("Error\nLa map n'est pas rectangulaire :(\n");
 	if (!check_wall(map->map, &pos))
 		error_mess("Error\nLa map n'est pas entouree de murs :(\n");
@@ -62,7 +62,7 @@ int	check_parsing(t_map *map, t_data *data, t_point size, t_point cur)
 	cur.x = data->coor_player_x;
 	size.y = map->nb_lignes;
 	size.x = map->nb_colones;
-	printf("colones%d", size.x);
+	//printf("colones%d", size.x);
 	if (!check_check_way(map->map, size, cur, data))
 		error_mess("Error\nSurement un endroit inaccessible... Verifie le chemin!\n");
 	data->nb_collectible = 0;

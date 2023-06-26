@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./GNL/get_next_line.h"
-# include "./GNL/get_next_line_bonus.h"
-# include "./Libft/libft.h"
-# include "./Printf/ft_printf.h"
+# include "./Lib/GNL/get_next_line.h"
+# include "./Lib/GNL/get_next_line_bonus.h"
+# include "./Lib/Libft/libft.h"
+# include "./Lib/Printf/ft_printf.h"
 # include <stdio.h>
 # include <fcntl.h>
 # include <string.h>
@@ -41,6 +41,9 @@ typedef struct	s_data_mlx
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		coor_p_x;
+	int		coor_p_y;
+	int		count_coll;
 }				t_data_mlx;
 
 typedef struct	s_vars_mlx 
@@ -75,7 +78,16 @@ typedef struct 		s_map
 	char	*chemin_vers_fichier;
 }					t_map;
 
-int		check_size(t_map *data, char **map, t_point *point);
+typedef struct 		s_all	
+{
+	t_map		*map;
+	t_point		*point;
+	t_data		*data;
+	t_vars_mlx	*v_mlx;
+	t_data_mlx	*d_mlx;
+}					t_all;
+
+int		check_size(char **map, t_point *point);
 int		check_wall(char **map, t_point	*pos);
 void	check_way(char **map, t_point size, t_point cur, t_data *data);
 int		check_map(char **map, t_data *data, t_point *point);
@@ -91,11 +103,14 @@ void	ft_init1(t_map *map, t_data *data, t_point *cur, t_point *size);
 char	*error_mess(char	*message);
 int		check_ber(char *fichier);
 void 	check_parsing_final(char *chemin_fichier, t_map *map);
-void	do_mlx(t_data_mlx *img, t_vars_mlx *vars, t_map *map);
+void	do_mlx(t_all *all);
 void	superpose_image(void *mlx, void *background_img, void *sur_img, int x, int y);
-void	ft_init_img(t_data_mlx	*img);
-void ft_putchar(char c);
-int	deal_key(int key, void *param);
-void	ft_mlx_pixel_put(t_data_mlx *img, int x, int y, int color);
-int	ft_close(int keycode, t_vars_mlx *vars);
+void	ft_init_img(t_data_mlx	*img, t_map *map, void *mlx);
+void	ft_putchar(char c);
+int		deal_key(int key, void	*param);
+int		ft_close(int keycode, t_all *all);
 void	put_texture(void *mlx, t_map *map, t_data_mlx *img, t_vars_mlx *vars);
+void	position_player(t_all *all);
+void	ft_mouv_player(int new_x, int new_y, t_all *all, int key);
+void	reprint_map(char **map);
+int		loop(t_all *all);

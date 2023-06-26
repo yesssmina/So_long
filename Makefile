@@ -2,19 +2,22 @@ NAME = so_long
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 
-SRC =	so_long_parsing.c \
-		check_parsing.c \
-		allocation_et_implementation_maps.c \
+SOURCE_FOLDER = source
+
+SRC =	./Lib/GNL/get_next_line.c \
+		./Lib/GNL/get_next_line_utils.c \
 		main.c \
-		ft_error.c \
-		initialisation_structure.c \
-		mlx.c \
-		check_parsing_final.c \
-		check_ber.c \
-		./GNL/get_next_line.c \
-		./GNL/get_next_line_utils.c \
+		./$(SOURCE_FOLDER)/so_long_parsing.c \
+		./$(SOURCE_FOLDER)/check_parsing.c \
+		./$(SOURCE_FOLDER)/allocation_et_implementation_maps.c \
+		./$(SOURCE_FOLDER)/ft_error.c \
+		./$(SOURCE_FOLDER)/initialisation_structure.c \
+		./$(SOURCE_FOLDER)/check_parsing_final.c \
+		./$(SOURCE_FOLDER)/check_ber.c \
+		./$(SOURCE_FOLDER)/mouv.c \
+		./$(SOURCE_FOLDER)/mlx.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -24,19 +27,19 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@ 
 
 $(NAME): $(OBJ)
-	make -C ./Libft/
-	make -C ./Printf/
-	$(CC) $(CFLAGS) $(OBJ) -Lmlx -lmlx -L./Libft -lft -L./Printf -lftprintf -framework OpenGL -framework AppKit -o $(NAME)
+	make -C ./Lib/Libft/
+	make -C ./Lib/Printf/
+	$(CC) $(CFLAGS) $(OBJ) -Lmlx -lmlx -L./Lib/Libft -lft -L./Lib/Printf -lftprintf -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-	make clean -C ./Libft/
-	make clean -C ./Printf/
-	#make clean -C ./GNL/
+	make clean -C ./Lib/Libft/
+	make clean -C ./Lib/Printf/
+	#make clean -C ./Lib/GNL/
 	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f ./Printf/libftprintf.a
-	rm -f ./Libft/libft.a
+	rm -f ./Lib/Printf/libftprintf.a
+	rm -f ./Lib/Libft/libft.a
 
 re:		fclean all

@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   check_ber.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanaggar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:38:37 by sanaggar          #+#    #+#             */
-/*   Updated: 2022/11/10 18:45:02 by sanaggar         ###   ########.fr       */
+/*   Created: 2023/06/16 21:31:26 by sanaggar          #+#    #+#             */
+/*   Updated: 2023/06/23 21:14:39 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "../so_long.h"
+
+int	check_ber(char *fichier)
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+	int i;
+
+	i = ft_strlen(fichier) - 1;
+	if (fichier[i] == 'r' && fichier[i - 1] == 'e' && fichier[i - 2] == 'b' && 
+		fichier[i - 3] == '.' )
+			return (1);
+	return (0);	
 }
