@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:10:54 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/26 03:43:20 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/27 00:17:02 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	nb_coll(t_all *all)
 	all->d_mlx->nb_coll = 0;
 	while (all->map->copie[y]!= NULL)
 	{
-		printf("%s\n\n", all->map->copie[y]);
+		//printf("%s\n\n", all->map->copie[y]);
 		x = 0;
 		while (all->map->copie[y][x] != '\0')
 		{
@@ -32,7 +32,7 @@ void	nb_coll(t_all *all)
 		}
 		y++;
 	}
-	printf("coll%d\n", all->d_mlx->nb_coll);
+	//printf("coll%d\n", all->d_mlx->nb_coll);
 }
 
 void	position_player(t_all *all)
@@ -64,9 +64,8 @@ void	position_player(t_all *all)
 
 int	deal_key(int key, void	*param)
 {
-	//printf("%d", key);
 	t_all *all = (t_all *)param;
-	
+
 	if (key == 53)
 		ft_close(key, all);
 
@@ -74,18 +73,22 @@ int	deal_key(int key, void	*param)
 
 	if (key == 0 || key == 123)
 	{
+		all->d_mlx->check_mouv = 0;
 		ft_mouv_player(all->d_mlx->coor_p_x - 1, all->d_mlx->coor_p_y, all, key);
 	}	
 	if (key == 2 || key == 124)
 	{
+		all->d_mlx->check_mouv = 2;
 		ft_mouv_player(all->d_mlx->coor_p_x + 1, all->d_mlx->coor_p_y, all, key);
 	}
 	if (key == 13 || key == 126)
 	{
+		all->d_mlx->check_mouv = 13;
 		ft_mouv_player(all->d_mlx->coor_p_x, all->d_mlx->coor_p_y - 1, all, key);
 	}
 	if (key == 1 || key == 125)
 	{
+		all->d_mlx->check_mouv = 1;
 		ft_mouv_player(all->d_mlx->coor_p_x, all->d_mlx->coor_p_y + 1, all, key);
 	}
 
@@ -98,9 +101,10 @@ void	ft_mouv_player(int new_x, int new_y, t_all *all, int key)
 	{
 		if (all->map->copie[new_y][new_x] != '1' && all->map->copie[new_y][new_x] != 'E')
 		{
+			ft_printf("%d mouv'\n", all->d_mlx->count_mouv++);
 			if (all->map->copie[new_y][new_x] == 'C')
 				all->d_mlx->count_coll++;
-			printf("count%d\n", all->d_mlx->count_coll);
+			//printf("count%d\n", all->d_mlx->count_coll);
 			all->map->copie[new_y][new_x] = 'P';
 			
 			all->map->copie[all->d_mlx->coor_p_y][all->d_mlx->coor_p_x] = '0';
@@ -118,16 +122,14 @@ void	ft_mouv_player(int new_x, int new_y, t_all *all, int key)
 				all->d_mlx->coor_p_y += 1;
 				
 		}
-		printf("%d\n", all->d_mlx->nb_coll);
+		//printf("%d\n", all->d_mlx->nb_coll);
 		if (all->map->copie[new_y][new_x] == 'E' && all->d_mlx->count_coll == all->d_mlx->nb_coll)
+		{
+			ft_printf("%d mouv'! Bravo!\n", all->d_mlx->count_mouv);
 			ft_close(key, all);
-		//if (all->d_mlx->count_coll == all->data->check_nb_collectible && all->map->copie[new_y][new_x] == 'E' )
-		//{
-		//	all->map->copie[new_y][new_x] = 'P';
-		//	all->map->copie[all->d_mlx->coor_p_y][all->d_mlx->coor_p_x] = '0';
-		//	//exit(0);
-		//}
-		reprint_map(all->map->copie);
+		}
+
+		//reprint_map(all->map->copie);
 	}
 }
 

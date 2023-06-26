@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 00:42:59 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/26 03:21:23 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/27 01:16:01 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,18 @@ void	ft_init_img(t_data_mlx	*img, t_map *map, void *mlx)
 	img->path = "./images/texture.xpm";
 	img->path_wall = "./images/wall.xpm";
 	img->path_collectible = "./images/diams.xpm";
-	img->path_player = "./images/pitch_front.xpm";
+	img->path_player_f = "./images/pitch_front.xpm";
+	img->path_player_l = "./images/pitch_left.xpm";
+	img->path_player_r = "./images/pitch_right.xpm";
+	img->path_player_b = "./images/pitch_behind.xpm";
 	img->path_exit = "./images/trone.xpm";
 	img->img = mlx_xpm_file_to_image(mlx, img->path, &(img->wall_width), &(img->wall_height));
 	img->wall = mlx_xpm_file_to_image(mlx, img->path_wall, &(img->wall_width), &(img->wall_height));
 	img->collectible = mlx_xpm_file_to_image(mlx, img->path_collectible, &(img->wall_width), &(img->wall_height));
-	img->player = mlx_xpm_file_to_image(mlx, img->path_player, &(img->wall_width), &(img->wall_height));
+	img->player_f = mlx_xpm_file_to_image(mlx, img->path_player_f, &(img->wall_width), &(img->wall_height));
+	img->player_l = mlx_xpm_file_to_image(mlx, img->path_player_l, &(img->wall_width), &(img->wall_height));
+	img->player_r = mlx_xpm_file_to_image(mlx, img->path_player_r, &(img->wall_width), &(img->wall_height));
+	img->player_b = mlx_xpm_file_to_image(mlx, img->path_player_b, &(img->wall_width), &(img->wall_height));
 	img->exit = mlx_xpm_file_to_image(mlx, img->path_exit, &(img->wall_width), &(img->wall_height));
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), &(img->line_length), &(img->endian));
 	img->img_width = (map->nb_colones) * 50;
@@ -54,5 +60,7 @@ void	ft_init_img(t_data_mlx	*img, t_map *map, void *mlx)
 	img->coor_p_y = 0;
 	img->count_coll = 0;
 	img->nb_coll = 0;
-	printf("wall_w%d\n", img->wall_width);
+	img->count_mouv = 1;
+	img->check_mouv = 0;
+	//printf("wall_w%d\n", img->wall_width);
 }

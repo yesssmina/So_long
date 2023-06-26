@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/26 03:45:16 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/27 01:31:08 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	main(int argc, char	**argv)
 	all.map = &map;
 	all.d_mlx = &img;
 	do_mlx(&all);
-
-	
 	return (0);
 }
 

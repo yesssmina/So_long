@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:54:29 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/26 03:43:52 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/27 01:44:29 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,22 @@ void	put_texture(void *mlx, t_map *map, t_data_mlx *img, t_vars_mlx *vars)
 			mlx_put_image_to_window(mlx, vars->win, img->img, point.x * 50, point.y * 50);
 			if (map->copie[point.y][point.x] == '1')
 				mlx_put_image_to_window(mlx, vars->win, img->wall, point.x * 50, point.y * 50);
+				
 			if (map->copie[point.y][point.x] == 'C')
 				mlx_put_image_to_window(mlx, vars->win, img->collectible, point.x * 50, point.y * 50);
-			if (map->copie[point.y][point.x] == 'P')
-				mlx_put_image_to_window(mlx, vars->win, img->player, point.x * 50, point.y * 50);
+
+			if (map->copie[point.y][point.x] == 'P' && img->check_mouv == 0)
+				mlx_put_image_to_window(mlx, vars->win, img->player_l, point.x * 50, point.y * 50);
+
+			if (map->copie[point.y][point.x] == 'P' && img->check_mouv == 1)
+				mlx_put_image_to_window(mlx, vars->win, img->player_f, point.x * 50, point.y * 50);
+
+			if (map->copie[point.y][point.x] == 'P' && img->check_mouv == 2)
+				mlx_put_image_to_window(mlx, vars->win, img->player_r, point.x * 50, point.y * 50);
+
+			if (map->copie[point.y][point.x] == 'P' && img->check_mouv == 13)
+				mlx_put_image_to_window(mlx, vars->win, img->player_b, point.x * 50, point.y * 50);	
+
 			if (map->copie[point.y][point.x] == 'E')
 				mlx_put_image_to_window(mlx, vars->win, img->exit, point.x * 50, point.y * 50);
 			point.x++;
@@ -66,4 +78,5 @@ void	do_mlx(t_all *all)
 	nb_coll(all);
 	mlx_loop_hook(all->v_mlx->mlx, loop, all);
 	mlx_loop(all->v_mlx->mlx);
+	
 }

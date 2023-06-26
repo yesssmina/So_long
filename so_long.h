@@ -26,7 +26,10 @@ typedef struct	s_data_mlx
 	char	*path;
 	char	*path_wall;
 	char	*path_collectible;
-	char	*path_player;
+	char	*path_player_f;
+	char	*path_player_l;
+	char	*path_player_r;
+	char	*path_player_b;
 	char	*path_exit;
 	int		img_width;
 	int		img_height;
@@ -35,7 +38,10 @@ typedef struct	s_data_mlx
 	void	*img;
 	void	*wall;
 	void	*collectible;
-	void	*player;
+	void	*player_f;
+	void	*player_l;
+	void	*player_r;
+	void	*player_b;
 	void	*exit;
 	char	*addr;
 	int		bits_per_pixel;
@@ -45,6 +51,8 @@ typedef struct	s_data_mlx
 	int		coor_p_y;
 	int		count_coll;
 	int		nb_coll;
+	int		count_mouv;
+	int		check_mouv;
 }				t_data_mlx;
 
 typedef struct	s_vars_mlx 
