@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 00:42:59 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/26 02:10:24 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/26 03:21:23 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void	ft_init_img(t_data_mlx	*img, t_map *map, void *mlx)
 	img->coor_p_x = 0;
 	img->coor_p_y = 0;
 	img->count_coll = 0;
+	img->nb_coll = 0;
 	printf("wall_w%d\n", img->wall_width);
 }

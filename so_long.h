@@ -44,6 +44,7 @@ typedef struct	s_data_mlx
 	int		coor_p_x;
 	int		coor_p_y;
 	int		count_coll;
+	int		nb_coll;
 }				t_data_mlx;
 
 typedef struct	s_vars_mlx 
@@ -114,3 +115,4 @@ void	position_player(t_all *all);
 void	ft_mouv_player(int new_x, int new_y, t_all *all, int key);
 void	reprint_map(char **map);
 int		loop(t_all *all);
+void	nb_coll(t_all *all);

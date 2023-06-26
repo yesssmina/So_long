@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/26 00:37:12 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/26 03:45:16 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,6 @@ int	main(int argc, char	**argv)
 	return (0);
 }
 
+//collectibles et exit ok
+// sprite 4 faces a implementer
+//compteur pas

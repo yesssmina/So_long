@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:54:29 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/26 00:39:34 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/26 03:43:52 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	loop(t_all *all)
 void	do_mlx(t_all *all)
 {
 	//ft_init(data);
+	nb_coll(all);
 	mlx_loop_hook(all->v_mlx->mlx, loop, all);
 	mlx_loop(all->v_mlx->mlx);
 }

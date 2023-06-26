@@ -6,11 +6,34 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:10:54 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/26 02:29:16 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/26 03:43:20 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	nb_coll(t_all *all)
+{	
+	int	x;
+	int y;
+
+	x = 0;
+	y = 0;
+	all->d_mlx->nb_coll = 0;
+	while (all->map->copie[y]!= NULL)
+	{
+		printf("%s\n\n", all->map->copie[y]);
+		x = 0;
+		while (all->map->copie[y][x] != '\0')
+		{
+			if (all->map->copie[y][x] == 'C')
+				all->d_mlx->nb_coll++;
+			x++;
+		}
+		y++;
+	}
+	printf("coll%d\n", all->d_mlx->nb_coll);
+}
 
 void	position_player(t_all *all)
 {
@@ -71,11 +94,9 @@ int	deal_key(int key, void	*param)
 
 void	ft_mouv_player(int new_x, int new_y, t_all *all, int key)
 {
-	//if (all->map->copie[new_y][new_x] == 'E' && all->d_mlx->count_coll != all->data->check_nb_collectible)
-	//	return ;
 	if (new_x >= 0 && new_x < all->map->nb_colones && new_y >= 0 && new_y < all->map->nb_lignes)
 	{
-		if (all->map->copie[new_y][new_x] != '1' && all->map->copie[new_y][new_x] != 'E' )
+		if (all->map->copie[new_y][new_x] != '1' && all->map->copie[new_y][new_x] != 'E')
 		{
 			if (all->map->copie[new_y][new_x] == 'C')
 				all->d_mlx->count_coll++;
@@ -95,7 +116,11 @@ void	ft_mouv_player(int new_x, int new_y, t_all *all, int key)
 				
 			if (key == 1)
 				all->d_mlx->coor_p_y += 1;
+				
 		}
+		printf("%d\n", all->d_mlx->nb_coll);
+		if (all->map->copie[new_y][new_x] == 'E' && all->d_mlx->count_coll == all->d_mlx->nb_coll)
+			ft_close(key, all);
 		//if (all->d_mlx->count_coll == all->data->check_nb_collectible && all->map->copie[new_y][new_x] == 'E' )
 		//{
 		//	all->map->copie[new_y][new_x] = 'P';
