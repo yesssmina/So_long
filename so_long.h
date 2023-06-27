@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                              :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:18:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/08 17:17:04 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 00:23:41 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdlib.h>
-#include <unistd.h>
-#include <mlx.h>
+# include <unistd.h>
+# include <mlx.h>
 
 typedef struct	s_data_mlx
 {
 	char	*path;
-	char	*path_wall;
-	char	*path_collectible;
-	char	*path_player_f;
-	char	*path_player_l;
-	char	*path_player_r;
-	char	*path_player_b;
-	char	*path_exit;
+	char	*p_wall;
+	char	*p_col;
+	char	*p_pl_f;
+	char	*p_pl_l;
+	char	*p_pl_r;
+	char	*p_pl_b;
+	char	*p_ex;
 	int		img_width;
 	int		img_height;
-	int		wall_width;
-	int		wall_height;
+	int		wid;
+	int		hei;
 	void	*img;
 	void	*wall;
-	void	*collectible;
+	void	*col;
 	void	*player_f;
 	void	*player_l;
 	void	*player_r;
@@ -47,8 +47,8 @@ typedef struct	s_data_mlx
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		coor_p_x;
-	int		coor_p_y;
+	int		coor_x;
+	int		coor_y;
 	int		count_coll;
 	int		nb_coll;
 	int		count_mouv;
@@ -65,10 +65,10 @@ typedef struct	s_vars_mlx
 
 typedef struct	s_data
 {
-	int	nb_collectible;
+	int	nb_col;
 	int	nb_exit;
 	int	nb_player;
-	int check_nb_collectible;
+	int check_nb_col;
 	int	coor_player_x;
 	int	coor_player_y;
 }				t_data;
@@ -117,6 +117,7 @@ int		check_ber(char *fichier);
 void 	check_parsing_final(char *chemin_fichier, t_map *map);
 void	do_mlx(t_all *all);
 void	superpose_image(void *mlx, void *background_img, void *sur_img, int x, int y);
+void	ft_init_xpm(void *mlx, t_data_mlx *img);
 void	ft_init_img(t_data_mlx	*img, t_map *map, void *mlx);
 void	ft_putchar(char c);
 int		deal_key(int key, void	*param);
@@ -128,3 +129,6 @@ void	ft_mouv_player(int new_x, int new_y, t_all *all, int key);
 void	reprint_map(char **map);
 int		loop(t_all *all);
 void	nb_coll(t_all *all);
+void	check_open_xpm(void *img);
+void	if_key(int key, t_all *all);
+void	if_key_close(int key, t_all *all);

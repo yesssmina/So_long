@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/25 23:05:03 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:29:05 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	check_way(char **map, t_point size, t_point cur, t_data *data)
 	if (map[cur.y][cur.x] == 'P')
 		data->nb_player++;
 	if (map[cur.y][cur.x] == 'C')
-		data->check_nb_collectible++;
+		data->check_nb_col++;
 	if (map[cur.y][cur.x] == 'E')
 		data->nb_exit++;
 	
@@ -102,7 +102,7 @@ int	check_map(char **map, t_data *data, t_point	*point)
 			if (!egal_ECP1or0(map, point->y, point->x, data))
 				return(0);
 			if (map[point->y][point->x] == 'C')
-				data->nb_collectible++;
+				data->nb_col++;
 			if (map[point->y][point->x] == 'E')
 				data->nb_exit++;
 			if (map[point->y][point->x] == 'P')

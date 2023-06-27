@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 23:42:52 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/23 21:14:22 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 00:28:38 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,11 @@ char	*error_mess(char	*message)
 	exit(EXIT_FAILURE);
 }
 
+void	if_key_close(int key, t_all *all)
+{
+	if (key == 53)
+	{
+		ft_printf("Vous avez quitté le jeu...PERDU!\n");
+		ft_close(key, all);
+	}	
+}

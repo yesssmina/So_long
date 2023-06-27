@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/27 19:31:45 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:46:28 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
 {
 	//t_map	maps;
 	
-	data->check_nb_collectible = 0;
+	data->check_nb_col = 0;
 	data->nb_player = 0;
 	data->nb_exit = 0;
 
 	
 	check_way(map, size, cur, data);
-	if (data->nb_collectible != data->check_nb_collectible || 
+	if (data->nb_col != data->check_nb_col || 
 		data->nb_exit < 1 || data->nb_player < 1)
 			return (0);
 	return (1);
@@ -33,12 +33,12 @@ int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
 int	check_check_map(char **map, t_data *data, t_point	*point)
 {
 	int	res;
-	data->nb_collectible = 0;
+	data->nb_col = 0;
 	data->nb_player = 0;
 	data->nb_exit = 0;
 	
 	res = check_map(map, data, point);
-	if (res == 0 || data->nb_collectible == 0 || 
+	if (res == 0 || data->nb_col == 0 || 
 		data->nb_exit != 1 || data->nb_player != 1)
 			return (0);
 	return (1);
@@ -57,14 +57,14 @@ int	check_parsing(t_map *map, t_data *data, t_point size, t_point cur)
 		error_mess("Error\nLa map n'est pas entouree de murs :(\n");
 	i = 0;
 	if (!check_check_map(map->copie, data, &point))
-		error_mess("Error\nIl y a tres certainement un intru dans la map...ou un absent!\n");
+		error_mess("Error\nCertainement un intru dans la map, ou un absent!\n");
 	cur.y = data->coor_player_y;
 	cur.x = data->coor_player_x;
 	size.y = map->nb_lignes;
 	size.x = map->nb_colones;
 	//printf("colones%d", size.x);
 	if (!check_check_way(map->map, size, cur, data))
-		error_mess("Error\nSurement un endroit inaccessible... Verifie le chemin!\n");
-	data->nb_collectible = 0;
+		error_mess("Error\nUn endroit inaccessible? Verifie le chemin!\n");
+	data->nb_col = 0;
 	return (1);
 }

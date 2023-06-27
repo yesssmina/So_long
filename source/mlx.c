@@ -6,17 +6,11 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:54:29 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/27 20:19:45 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 00:30:39 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-
-void ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 int	ft_close(int keycode, t_all *all)
 {
@@ -60,7 +54,7 @@ void	put_texture(void *mlx, t_all *a)
 					a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
 				
 			if (a->map->copie[a->y][a->x] == 'C')
-				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->collectible, 
+				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->col, 
 					a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
 
 			if (a->map->copie[a->y][a->x] == 'P')
@@ -86,7 +80,6 @@ int	loop(t_all *all)
 
 void	do_mlx(t_all *all)
 {
-	//ft_init(data);
 	nb_coll(all);
 	mlx_do_key_autorepeaton(all->v_mlx->mlx);
 	mlx_loop_hook(all->v_mlx->mlx, loop, all);

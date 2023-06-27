@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/27 01:31:08 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 00:32:05 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,11 @@ int	main(int argc, char	**argv)
 	//ft_init_img(&img, mlx);
 	vars.mlx = mlx_init();
 	ft_init_img(&img, &map, vars.mlx);
-	vars.win = mlx_new_window(vars.mlx, img.img_width, img.img_height, "mon_so_long");
+	vars.win = mlx_new_window(vars.mlx, img.img_width, img.img_height, 
+		"It's me");
 	all.v_mlx = &vars;
 	all.map = &map;
 	all.d_mlx = &img;
 	do_mlx(&all);
 	return (0);
 }
-
-//collectibles et exit ok
-// sprite 4 faces a implementer
-//compteur pas
