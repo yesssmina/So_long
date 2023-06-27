@@ -53,6 +53,7 @@ typedef struct	s_data_mlx
 	int		nb_coll;
 	int		count_mouv;
 	int		check_mouv;
+	int		cell_size;
 }				t_data_mlx;
 
 typedef struct	s_vars_mlx 
@@ -121,6 +122,7 @@ void	ft_putchar(char c);
 int		deal_key(int key, void	*param);
 int		ft_close(int keycode, t_all *all);
 void	put_texture(void *mlx, t_all *a);
+void	put_texture_p(void *mlx, t_all *a);
 void	position_player(t_all *all);
 void	ft_mouv_player(int new_x, int new_y, t_all *all, int key);
 void	reprint_map(char **map);

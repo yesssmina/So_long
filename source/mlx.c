@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:54:29 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/27 19:48:32 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:19:45 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ int	ft_close(int keycode, t_all *all)
 	return (0);
 }
 
+void	put_texture_p(void *mlx, t_all *a)
+{
+	if (a->d_mlx->check_mouv == 0)
+		mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->player_l, 
+			a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
+
+	if (a->d_mlx->check_mouv == 1)
+		mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->player_f, 
+			a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
+
+	if (a->d_mlx->check_mouv == 2)
+		mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->player_r, 
+			a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
+
+	if (a->d_mlx->check_mouv == 13)
+		mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->player_b, 
+			a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);	
+}
 
 void	put_texture(void *mlx, t_all *a)
 {	
@@ -35,27 +53,22 @@ void	put_texture(void *mlx, t_all *a)
 	{
 		while (a->map->copie[a->y][a->x])
 		{
-			mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->img, a->x * 50, a->y * 50);
+			mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->img, 
+				a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
 			if (a->map->copie[a->y][a->x] == '1')
-				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->wall, a->x * 50, a->y * 50);
+				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->wall, 
+					a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
 				
 			if (a->map->copie[a->y][a->x] == 'C')
-				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->collectible, a->x * 50, a->y * 50);
+				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->collectible, 
+					a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
 
-			if (a->map->copie[a->y][a->x] == 'P' && a->d_mlx->check_mouv == 0)
-				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->player_l, a->x * 50, a->y * 50);
-
-			if (a->map->copie[a->y][a->x] == 'P' && a->d_mlx->check_mouv == 1)
-				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->player_f, a->x * 50, a->y * 50);
-
-			if (a->map->copie[a->y][a->x] == 'P' && a->d_mlx->check_mouv == 2)
-				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->player_r, a->x * 50, a->y * 50);
-
-			if (a->map->copie[a->y][a->x] == 'P' && a->d_mlx->check_mouv == 13)
-				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->player_b, a->x * 50, a->y * 50);	
-
+			if (a->map->copie[a->y][a->x] == 'P')
+				put_texture_p(mlx, a);
+				
 			if (a->map->copie[a->y][a->x] == 'E')
-				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->exit, a->x * 50, a->y * 50);
+				mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->exit, 
+					a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
 			a->x++;
 		}
 		a->x = 0;
