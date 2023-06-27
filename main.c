@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:01:40 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/28 00:32:05 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 00:35:18 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,6 @@ int	main(int argc, char	**argv)
 	do_mlx(&all);
 	return (0);
 }
+
+//norminette ko
+//check if .ber est bien un fichier
