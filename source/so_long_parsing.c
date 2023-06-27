@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/27 22:29:05 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 01:11:04 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,18 @@
 // check si la map est bien rectangulaire
 int	check_size(char	**map, t_point *point)
 {
-	int		i;
-	
+	int	i;
+
 	i = 0;
 	point->y = 0;
-
 	while (map[point->y][i] != '\0' && map[point->y][i] != '\n')
 			i++;
 	while (map[point->y])
 	{
-		//printf("y%d\n", point->y);
 		point->x = 0;
-		
-		while (map[point->y][point->x] != '\0' && map[point->y][point->x] != '\n')
-		{
+		while (map[point->y][point->x] != '\0' &&
+			map[point->y][point->x] != '\n')
 			point->x++;
-		}
-		//printf("i%dx%d\n", i, point->x);
-
 		if (point->x != i)
 			return (0);
 		point->y++;
@@ -61,7 +55,7 @@ int	check_wall(char **map, t_point *pos)
 	while (map[pos->y - 1])
 	{
 		if (map[0][pos->x] == '\0')
-			break;
+			break ;
 		if (map[pos->y - 1][pos->x] != '1')
 			return (0);
 		pos->x++;
@@ -72,17 +66,15 @@ int	check_wall(char **map, t_point *pos)
 //check s'il y a un chemin accessible entre le P, un C et un E
 void	check_way(char **map, t_point size, t_point cur, t_data *data)
 {
-	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x 
+	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x
 		|| map[cur.y][cur.x] == '1')
 		return ;
-	
 	if (map[cur.y][cur.x] == 'P')
 		data->nb_player++;
 	if (map[cur.y][cur.x] == 'C')
 		data->check_nb_col++;
 	if (map[cur.y][cur.x] == 'E')
 		data->nb_exit++;
-	
 	map[cur.y][cur.x] = '1';
 	check_way(map, size, (t_point){cur.x - 1, cur.y}, data);
 	check_way(map, size, (t_point){cur.x + 1, cur.y}, data);
@@ -99,8 +91,8 @@ int	check_map(char **map, t_data *data, t_point	*point)
 	{
 		while (map[point->y][point->x])
 		{
-			if (!egal_ECP1or0(map, point->y, point->x, data))
-				return(0);
+			if (!egal_ecp1or0(map, point->y, point->x, data))
+				return (0);
 			if (map[point->y][point->x] == 'C')
 				data->nb_col++;
 			if (map[point->y][point->x] == 'E')
@@ -111,16 +103,16 @@ int	check_map(char **map, t_data *data, t_point	*point)
 		}
 		point->x = 0;
 		point->y++;
-		}
+	}
 	return (1);
 }
 
-int	egal_ECP1or0(char **map, int y, int x, t_data *data)
+int	egal_ecp1or0(char **map, int y, int x, t_data *data)
 {	
 	if (map[y][x] == '1')
 		return (1);
 	if (map[y][x] == '0')
-		return (1);				
+		return (1);
 	if (map[y][x] == 'P')
 	{
 		data->coor_player_y = y;

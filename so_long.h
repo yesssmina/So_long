@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:18:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/28 00:23:41 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 01:11:04 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		check_check_way(char **map, t_point	size, t_point cur, t_data *data);
 int		check_check_map(char **map, t_data *data, t_point *point);
 int		check_parsing(t_map *map, t_data *data, t_point size, t_point cur);
 char	 **allocation_map(int nb_ligne, int nb_colonne);
-int		egal_ECP1or0(char **map, int y, int x, t_data *data);
+int		egal_ecp1or0(char **map, int y, int x, t_data *data);
 void	ft_map_et_map_copie(t_map *map, int fd);
 void	cacul_nb_lignes_et_colones(t_map	*dimension);
 void 	ft_init(t_data *data);

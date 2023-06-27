@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/27 22:46:28 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 00:55:36 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 //check if check_way est ok
 int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
-{
-	//t_map	maps;
-	
+{	
 	data->check_nb_col = 0;
 	data->nb_player = 0;
 	data->nb_exit = 0;
-
-	
 	check_way(map, size, cur, data);
-	if (data->nb_col != data->check_nb_col || 
-		data->nb_exit < 1 || data->nb_player < 1)
-			return (0);
+	if (data->nb_col != data->check_nb_col || data->nb_exit
+		< 1 || data->nb_player < 1)
+		return (0);
 	return (1);
 }
 
@@ -33,14 +29,14 @@ int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
 int	check_check_map(char **map, t_data *data, t_point	*point)
 {
 	int	res;
+
 	data->nb_col = 0;
 	data->nb_player = 0;
 	data->nb_exit = 0;
-	
 	res = check_map(map, data, point);
-	if (res == 0 || data->nb_col == 0 || 
-		data->nb_exit != 1 || data->nb_player != 1)
-			return (0);
+	if (res == 0 || data->nb_col == 0
+		|| data->nb_exit != 1 || data->nb_player != 1)
+		return (0);
 	return (1);
 }
 
@@ -49,8 +45,8 @@ int	check_parsing(t_map *map, t_data *data, t_point size, t_point cur)
 {
 	t_point	point;
 	t_point	pos;
-	int	i;
-	
+	int		i;
+
 	if (!check_size(map->map, &point))
 		error_mess("Error\nLa map n'est pas rectangulaire :(\n");
 	if (!check_wall(map->map, &pos))
@@ -62,7 +58,6 @@ int	check_parsing(t_map *map, t_data *data, t_point size, t_point cur)
 	cur.x = data->coor_player_x;
 	size.y = map->nb_lignes;
 	size.x = map->nb_colones;
-	//printf("colones%d", size.x);
 	if (!check_check_way(map->map, size, cur, data))
 		error_mess("Error\nUn endroit inaccessible? Verifie le chemin!\n");
 	data->nb_col = 0;

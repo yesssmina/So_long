@@ -6,13 +6,13 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 23:42:52 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/28 00:28:38 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/28 00:58:23 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../so_long.h"
+#include "../so_long.h"
 
-char	*error_mess(char	*message)
+char	*error_mess(char *message)
 {
 	ft_putstr_fd(message, 1);
 	exit(EXIT_FAILURE);
