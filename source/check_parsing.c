@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/24 20:09:16 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:31:45 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_parsing(t_map *map, t_data *data, t_point size, t_point cur)
 		error_mess("Error\nLa map n'est pas entouree de murs :(\n");
 	i = 0;
 	if (!check_check_map(map->copie, data, &point))
-		error_mess("Error\nIl y a tres certainement un intru dans la map!\n");
+		error_mess("Error\nIl y a tres certainement un intru dans la map...ou un absent!\n");
 	cur.y = data->coor_player_y;
 	cur.x = data->coor_player_x;
 	size.y = map->nb_lignes;

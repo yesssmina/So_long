@@ -94,6 +94,8 @@ typedef struct 		s_all
 	t_data		*data;
 	t_vars_mlx	*v_mlx;
 	t_data_mlx	*d_mlx;
+	int			x;
+	int			y;
 }					t_all;
 
 int		check_size(char **map, t_point *point);
@@ -118,7 +120,7 @@ void	ft_init_img(t_data_mlx	*img, t_map *map, void *mlx);
 void	ft_putchar(char c);
 int		deal_key(int key, void	*param);
 int		ft_close(int keycode, t_all *all);
-void	put_texture(void *mlx, t_map *map, t_data_mlx *img, t_vars_mlx *vars);
+void	put_texture(void *mlx, t_all *a);
 void	position_player(t_all *all);
 void	ft_mouv_player(int new_x, int new_y, t_all *all, int key);
 void	reprint_map(char **map);
