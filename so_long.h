@@ -6,9 +6,12 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:18:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/28 01:11:04 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/30 23:16:28 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "./Lib/GNL/get_next_line.h"
 # include "./Lib/GNL/get_next_line_bonus.h"
@@ -21,7 +24,9 @@
 # include <unistd.h>
 # include <mlx.h>
 
-typedef struct	s_data_mlx
+// REMOVE LIB
+
+typedef struct s_data_mlx
 {
 	char	*path;
 	char	*p_wall;
@@ -56,30 +61,29 @@ typedef struct	s_data_mlx
 	int		cell_size;
 }				t_data_mlx;
 
-typedef struct	s_vars_mlx 
+typedef struct s_vars_mlx 
 {
 	void	*mlx;
 	void	*win;
 }				t_vars_mlx;
 
-
-typedef struct	s_data
+typedef struct s_data
 {
 	int	nb_col;
 	int	nb_exit;
 	int	nb_player;
-	int check_nb_col;
+	int	check_nb_col;
 	int	coor_player_x;
 	int	coor_player_y;
 }				t_data;
 
-typedef struct 	s_point 
+typedef struct s_point 
 {
-    int 		x;
-    int 		y;
-} 				t_point;
+	int		x;
+	int		y;
+}				t_point;
 
-typedef struct 		s_map	
+typedef struct s_map
 {
 	char	**map;
 	char	**copie;
@@ -88,7 +92,7 @@ typedef struct 		s_map
 	char	*chemin_vers_fichier;
 }					t_map;
 
-typedef struct 		s_all	
+typedef struct s_all
 {
 	t_map		*map;
 	t_point		*point;
@@ -97,7 +101,7 @@ typedef struct 		s_all
 	t_data_mlx	*d_mlx;
 	int			x;
 	int			y;
-}					t_all;
+}				t_all;
 
 int		check_size(char **map, t_point *point);
 int		check_wall(char **map, t_point	*pos);
@@ -106,17 +110,16 @@ int		check_map(char **map, t_data *data, t_point *point);
 int		check_check_way(char **map, t_point	size, t_point cur, t_data *data);
 int		check_check_map(char **map, t_data *data, t_point *point);
 int		check_parsing(t_map *map, t_data *data, t_point size, t_point cur);
-char	 **allocation_map(int nb_ligne, int nb_colonne);
+char	**allocation_map(int nb_ligne, int nb_colonne);
 int		egal_ecp1or0(char **map, int y, int x, t_data *data);
 void	ft_map_et_map_copie(t_map *map, int fd);
 void	cacul_nb_lignes_et_colones(t_map	*dimension);
-void 	ft_init(t_data *data);
+void	ft_init(t_data *data);
 void	ft_init1(t_map *map, t_data *data, t_point *cur, t_point *size);
 char	*error_mess(char	*message);
 int		check_ber(char *fichier);
-void 	check_parsing_final(char *chemin_fichier, t_map *map);
+void	check_parsing_final(char *chemin_fichier, t_map *map);
 void	do_mlx(t_all *all);
-void	superpose_image(void *mlx, void *background_img, void *sur_img, int x, int y);
 void	ft_init_xpm(void *mlx, t_data_mlx *img);
 void	ft_init_img(t_data_mlx	*img, t_map *map, void *mlx);
 void	ft_putchar(char c);
@@ -132,3 +135,8 @@ void	nb_coll(t_all *all);
 void	check_open_xpm(void *img);
 void	if_key(int key, t_all *all);
 void	if_key_close(int key, t_all *all);
+void	put_str_to_window(int arg, t_all *a);
+void	if_mouv_1(int key, t_all *all);
+void	if_parsing_ok(int fd);
+
+#endif

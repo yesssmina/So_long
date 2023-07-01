@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:10:54 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/28 01:06:56 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/30 23:19:03 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,16 @@ void	position_player(t_all *all)
 
 int	deal_key(int key, void	*param)
 {
-	t_all	*all = (t_all *)param;
+	t_all	*all;
 
+	all = (t_all *)param;
 	if_key_close(key, all);
 	position_player(all);
 	if (key == 0 || key == 123)
 	{
 		all->d_mlx->check_mouv = 0;
 		ft_mouv_player(all->d_mlx->coor_x - 1, all->d_mlx->coor_y, all, key);
-	}	
+	}
 	if (key == 2 || key == 124)
 	{
 		all->d_mlx->check_mouv = 2;
@@ -80,10 +81,7 @@ int	deal_key(int key, void	*param)
 		ft_mouv_player(all->d_mlx->coor_x, all->d_mlx->coor_y - 1, all, key);
 	}
 	if (key == 1 || key == 125)
-	{
-		all->d_mlx->check_mouv = 1;
-		ft_mouv_player(all->d_mlx->coor_x, all->d_mlx->coor_y + 1, all, key);
-	}
+		if_mouv_1(key, all);
 	return (0);
 }
 
@@ -117,22 +115,8 @@ void	ft_mouv_player(int new_x, int new_y, t_all *all, int key)
 		if (all->map->copie[new_y][new_x] == 'E' &&
 			all->d_mlx->count_coll == all->d_mlx->nb_coll)
 		{
-			ft_printf("%d mouv'! Bravo!\n", all->d_mlx->count_mouv);
+			ft_printf("You win!! %d mouv'! Bravo!\n", all->d_mlx->count_mouv);
 			ft_close(key, all);
 		}
 	}
-}
-
-void	reprint_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i] != NULL)
-	{
-		ft_putstr_fd(map[i], 1);
-		ft_printf("\n");
-		i++;
-	}
-	ft_printf("\n");
 }

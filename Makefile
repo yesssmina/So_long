@@ -12,7 +12,7 @@ SRC =	./Lib/GNL/get_next_line.c \
 		./$(SOURCE_FOLDER)/so_long_parsing.c \
 		./$(SOURCE_FOLDER)/check_parsing.c \
 		./$(SOURCE_FOLDER)/allocation_et_implementation_maps.c \
-		./$(SOURCE_FOLDER)/ft_error.c \
+		./$(SOURCE_FOLDER)/ft_error_and_close_and_utils.c \
 		./$(SOURCE_FOLDER)/initialisation_structure.c \
 		./$(SOURCE_FOLDER)/check_parsing_final.c \
 		./$(SOURCE_FOLDER)/check_ber.c \

@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:31:26 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/23 21:14:39 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/30 22:57:54 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	check_ber(char *fichier)
 {
-	int i;
+	int	i;
 
 	i = ft_strlen(fichier) - 1;
 	if (fichier[i] == 'r' && fichier[i - 1] == 'e' && fichier[i - 2] == 'b' && 
 		fichier[i - 3] == '.' )
-			return (1);
-	return (0);	
+		return (1);
+	return (0);
 }

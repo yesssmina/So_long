@@ -6,19 +6,11 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:54:29 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/28 01:02:34 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/06/30 23:50:56 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-int	ft_close(int keycode, t_all *all)
-{
-	(void)keycode;
-	(void)all;
-	exit(0);
-	return (0);
-}
 
 void	put_texture_p(void *mlx, t_all *a)
 {
@@ -36,12 +28,22 @@ void	put_texture_p(void *mlx, t_all *a)
 			a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
 }
 
+void	put_str_to_window(int arg, t_all *a)
+{
+	char	*str;
+
+	str = ft_itoa(arg);
+	mlx_string_put(a->v_mlx->mlx, a->v_mlx->win, a->d_mlx->coor_x * 50,
+		a->d_mlx->coor_y * 50.5, 0xCC00FF, str);
+	free(str);
+}
+
 void	put_texture(void *mlx, t_all *a)
-{	
+{
 	a->y = 0;
-	a->x = 0;
 	while (a->map->copie[a->y])
 	{
+		a->x = 0;
 		while (a->map->copie[a->y][a->x])
 		{
 			mlx_put_image_to_window(mlx, a->v_mlx->win, a->d_mlx->img,
@@ -59,9 +61,9 @@ void	put_texture(void *mlx, t_all *a)
 					a->x * a->d_mlx->cell_size, a->y * a->d_mlx->cell_size);
 			a->x++;
 		}
-		a->x = 0;
 		a->y++;
 	}
+	put_str_to_window(a->d_mlx->count_mouv, a);
 }
 
 int	loop(t_all *all)

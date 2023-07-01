@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 00:42:59 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/28 00:47:32 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/07/01 01:26:03 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_init1(t_map *map, t_data *data, t_point *cur, t_point *size)
 	data->nb_player = 0;
 	data->nb_exit = 0;
 	size->x = map->nb_colones;
-	size->y = map->nb_lignes + 1;
+	size->y = map->nb_lignes;
 	cur->x = data->coor_player_x;
 	cur->y = data->coor_player_y;
 }

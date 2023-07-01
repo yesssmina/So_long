@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:03:06 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/28 00:55:36 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/07/01 01:28:23 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 //check if check_way est ok
 int	check_check_way(char **map, t_point	size, t_point cur, t_data *data)
-{	
+{
 	data->check_nb_col = 0;
 	data->nb_player = 0;
 	data->nb_exit = 0;
 	check_way(map, size, cur, data);
+	//reprint_map(map);
 	if (data->nb_col != data->check_nb_col || data->nb_exit
 		< 1 || data->nb_player < 1)
 		return (0);
@@ -58,8 +59,10 @@ int	check_parsing(t_map *map, t_data *data, t_point size, t_point cur)
 	cur.x = data->coor_player_x;
 	size.y = map->nb_lignes;
 	size.x = map->nb_colones;
-	if (!check_check_way(map->map, size, cur, data))
+	if (!check_check_way(map->map, size, cur, data)) {
+//		reprint_map(map->copie);
 		error_mess("Error\nUn endroit inaccessible? Verifie le chemin!\n");
+	}
 	data->nb_col = 0;
 	return (1);
 }
