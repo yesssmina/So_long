@@ -6,13 +6,13 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/07/01 00:43:20 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/07/04 01:05:30 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-// check si la map est bien rectangulaire
+// check if the map is rectangular
 int	check_size(char	**map, t_point *point)
 {
 	int	i;
@@ -34,7 +34,7 @@ int	check_size(char	**map, t_point *point)
 	return (1);
 }
 
-//check si la map est bien entoure de murs
+//check if the map is well surrounded by walls
 int	check_wall(char **map, t_point *pos)
 {
 	pos->x = 0;
@@ -63,17 +63,12 @@ int	check_wall(char **map, t_point *pos)
 	return (1);
 }
 
-//check s'il y a un chemin accessible entre le P, un C et un E
+//check if there is an accessible path between the P, a C and an E
 void	check_way(char **map, t_point size, t_point cur, t_data *data)
 {
-	printf("x%d\ny%d\n", size.x, size.y);
 	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x
-		|| map[cur.y][cur.x] == '1') {
-		printf("char err = %c\n", map[cur.y][cur.x]);
-		printf("x%d\ny%d\n", size.x, size.y);
+		|| map[cur.y][cur.x] == '1')
 		return ;
-		}
-	printf("char = %c", map[cur.y][cur.x]);
 	if (map[cur.y][cur.x] == 'P')
 		data->nb_player++;
 	if (map[cur.y][cur.x] == 'C')
@@ -81,14 +76,13 @@ void	check_way(char **map, t_point size, t_point cur, t_data *data)
 	if (map[cur.y][cur.x] == 'E')
 		data->nb_exit++;
 	map[cur.y][cur.x] = '1';
-	reprint_map(map);
 	check_way(map, size, (t_point){cur.x - 1, cur.y}, data);
 	check_way(map, size, (t_point){cur.x + 1, cur.y}, data);
 	check_way(map, size, (t_point){cur.x, cur.y - 1}, data);
 	check_way(map, size, (t_point){cur.x, cur.y + 1}, data);
 }
 
-// check s'il y a le bon nombre de de P, C et E et rien d'autre
+//check if there is the right number of P's, C's and E's and nothing else
 int	check_map(char **map, t_data *data, t_point	*point)
 {
 	point->y = 0;
@@ -113,6 +107,7 @@ int	check_map(char **map, t_data *data, t_point	*point)
 	return (1);
 }
 
+//check if there is an intruder in the map
 int	egal_ecp1or0(char **map, int y, int x, t_data *data)
 {
 	if (map[y][x] == '1')

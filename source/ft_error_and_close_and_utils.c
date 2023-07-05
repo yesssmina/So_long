@@ -6,14 +6,12 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 23:42:52 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/07/01 00:13:06 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:42:31 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-
-// print la map sur terminal
 void	reprint_map(char **map)
 {
 	int	i;
@@ -28,7 +26,6 @@ void	reprint_map(char **map)
 	ft_printf("\n");
 }
 
-
 void	if_mouv_1(int key, t_all *all)
 {
 	all->d_mlx->check_mouv = 1;
@@ -40,7 +37,6 @@ int	ft_close(int keycode, t_all *all)
 	(void)keycode;
 	(void)all;
 	exit(0);
-	return (0);
 }
 
 char	*error_mess(char *message)

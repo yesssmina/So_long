@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:18:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/30 23:16:28 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:40:04 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,7 @@
 # include "./Lib/GNL/get_next_line_bonus.h"
 # include "./Lib/Libft/libft.h"
 # include "./Lib/Printf/ft_printf.h"
-# include <stdio.h>
-# include <fcntl.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include <mlx.h>
-
-// REMOVE LIB
 
 typedef struct s_data_mlx
 {
@@ -90,6 +83,10 @@ typedef struct s_map
 	int		nb_colones;
 	int		nb_lignes;
 	char	*chemin_vers_fichier;
+	int		fd0;
+	char	c;
+	int		nb_colonnes_temp;
+	int		nouvelle_ligne;
 }					t_map;
 
 typedef struct s_all
@@ -113,7 +110,7 @@ int		check_parsing(t_map *map, t_data *data, t_point size, t_point cur);
 char	**allocation_map(int nb_ligne, int nb_colonne);
 int		egal_ecp1or0(char **map, int y, int x, t_data *data);
 void	ft_map_et_map_copie(t_map *map, int fd);
-void	cacul_nb_lignes_et_colones(t_map	*dimension);
+void	cacul_nb_lignes_et_colones(t_map	*map);
 void	ft_init(t_data *data);
 void	ft_init1(t_map *map, t_data *data, t_point *cur, t_point *size);
 char	*error_mess(char	*message);
@@ -138,5 +135,8 @@ void	if_key_close(int key, t_all *all);
 void	put_str_to_window(int arg, t_all *a);
 void	if_mouv_1(int key, t_all *all);
 void	if_parsing_ok(int fd);
+void	ft_init_map(t_map *map);
+void	protection(char **map);
+void	protection_line(char *line, t_map *map);
 
 #endif

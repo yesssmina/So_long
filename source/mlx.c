@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 16:54:29 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/30 23:50:56 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/07/04 03:19:45 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	put_texture(void *mlx, t_all *a)
 		}
 		a->y++;
 	}
-	put_str_to_window(a->d_mlx->count_mouv, a);
+	put_str_to_window(a->d_mlx->count_mouv - 1, a);
 }
 
 int	loop(t_all *all)

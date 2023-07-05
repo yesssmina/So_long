@@ -6,7 +6,7 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:10:54 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/06/30 23:19:03 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/07/04 20:48:30 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ void	ft_mouv_player(int new_x, int new_y, t_all *all, int key)
 		if (all->map->copie[new_y][new_x] == 'E' &&
 			all->d_mlx->count_coll == all->d_mlx->nb_coll)
 		{
-			ft_printf("You win!! %d mouv'! Bravo!\n", all->d_mlx->count_mouv);
+			ft_printf("**********\n*%d mouv'*\n*You win!!\n*BRAVO!!!*\n**********\n",
+				all->d_mlx->count_mouv);
 			ft_close(key, all);
 		}
 	}

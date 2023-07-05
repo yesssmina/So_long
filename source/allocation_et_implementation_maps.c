@@ -6,57 +6,69 @@
 /*   By: sanaggar <sanaggar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:31:43 by sanaggar          #+#    #+#             */
-/*   Updated: 2023/07/01 02:45:47 by sanaggar         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:34:49 by sanaggar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-//calcul dimension map fichier pour allocation et imple' map
-void	cacul_nb_lignes_et_colones(t_map *dimension)
+void	ft_init_map(t_map *map)
 {
-	int fd0;
-    char c;
-    int nb_colonnes_temp;
-    int nouvelle_ligne;
+	map->nb_lignes = 0;
+	map->nb_colones = 0;
+	map->nb_colonnes_temp = 0;
+	map->nouvelle_ligne = 1;
+	map->fd0 = open(map->chemin_vers_fichier, O_RDONLY);
+	if (map->fd0 == -1)
+		return ;
+}
 
-    dimension->nb_lignes = 0;
-    dimension->nb_colones = 0;
-    nb_colonnes_temp = 0;
-    nouvelle_ligne = 1;
+//calcul map map fichier pour allocation et imple' map
+void	cacul_nb_lignes_et_colones(t_map *map)
+{
+	ft_init_map(map);
+	while (read(map->fd0, &map->c, 1) == 1)
+	{
+		if (map->c == '\n')
+		{
+			if (map->nouvelle_ligne)
+			{
+				map->nb_lignes++;
+				map->nouvelle_ligne = 0;
+			}
+			if (map->nb_colonnes_temp > 0)
+				map->nb_colones = map->nb_colonnes_temp;
+			map->nb_colonnes_temp = 0;
+		}
+		else
+		{
+			map->nb_colonnes_temp++;
+			map->nouvelle_ligne = 1;
+		}
+	}
+	if (map->nouvelle_ligne)
+		map->nb_lignes++;
+	if (map->nb_colonnes_temp > 0)
+		map->nb_colones = map->nb_colonnes_temp;
+	close(map->fd0);
+}
 
-    fd0 = open(dimension->chemin_vers_fichier, O_RDONLY);
-    if (fd0 == -1)
-        return;
+void	protection(char **map)
+{
+	if (!map)
+	{
+		free(map);
+		error_mess("Error\nErreur d'allocation\n");
+	}
+}
 
-    while (read(fd0, &c, 1) == 1)
-    {
-        if (c == '\n')
-        {
-            if (nouvelle_ligne)
-            {
-                dimension->nb_lignes++;
-                nouvelle_ligne = 0;
-            }
-            if (nb_colonnes_temp > 0)
-                dimension->nb_colones = nb_colonnes_temp;
-            nb_colonnes_temp = 0;
-        }
-        else
-        {
-            nb_colonnes_temp++;
-            nouvelle_ligne = 1;
-        }
-        printf("c%c\nnb_colonnes_temp%d\n", c, nb_colonnes_temp);
-    }
-
-    if (nouvelle_ligne)
-        dimension->nb_lignes++;
-
-    if (nb_colonnes_temp > 0)
-        dimension->nb_colones = nb_colonnes_temp;
-
-    close(fd0);
+void	protection_line(char *line, t_map *map)
+{
+	if (!line)
+	{
+		free(map->copie);
+		error_mess("Error\nErreur d'allocation\n");
+	}
 }
 
 //Allocation and implementation maps
@@ -66,9 +78,9 @@ void	ft_map_et_map_copie(t_map *map, int fd)
 
 	j = -1;
 	map->map = malloc(sizeof(char *) * (map->nb_lignes + 1));
+	protection(map->map);
 	map->copie = malloc(sizeof(char *) * (map->nb_lignes + 1));
-	if (!(map->map || !(map->copie)))
-		return ;
+	protection(map->copie);
 	map->map[map->nb_lignes] = NULL;
 	map->copie[map->nb_lignes] = NULL;
 	while (j++ <= map->nb_lignes)
@@ -79,11 +91,7 @@ void	ft_map_et_map_copie(t_map *map, int fd)
 		if (map->map[j][ft_strlen(map->map[j]) - 1] == '\n')
 			map->map[j][ft_strlen(map->map[j]) - 1] = '\0';
 		map->copie[j] = malloc(sizeof(char) * (ft_strlen(map->map[j]) + 1));
-		if (!map->copie[j])
-		{
-			free(map->copie);
-			return ;
-		}
+		protection_line(map->copie[j], map);
 		ft_strlcpy(map->copie[j], map->map[j], ft_strlen(map->map[j]) + 1);
 	}
 }
